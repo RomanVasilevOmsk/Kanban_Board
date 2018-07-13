@@ -1,0 +1,9 @@
+.cards-list{
+  &__wrapper{
+    margin-top: 30px;
+  }
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  flex-direction: column;
+}

@@ -1,5 +1,19 @@
-@import 'vendor/normalize';
+@import "vendor/normalize";
+@import "column-list";
+@import "column";
+
+@import "cards-list";
+@import "card";
+@import "card-modal";
 
 body{
-  background-color: red;
+  background-color: #e6e6e6;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+button{
+  &:active, &:focus{
+    outline: none;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './components/Layout';
+import ColumnList from './components/ColumnList';
 import './styles/_base.scss';
 
 class App extends Component {
@@ -7,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
        <Layout>
-         HELLO WORLD
+         <ColumnList />
        </Layout>
       </div>
     );
