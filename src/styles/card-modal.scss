@@ -14,12 +14,10 @@
   border-radius: 2px;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
   &__overlay{
@@ -49,7 +47,6 @@
   }
   &__name{
     font-size: 20px;
-    line-height: 24px;
     border: 1px solid transparent;
     background-color: inherit;
     font-weight: 600;
@@ -61,6 +58,12 @@
   }
   &__column-name{
     color: #9a9a9a;
+  }
+  &__author{
+    margin: 0;
+    font-style: italic;
+    color: #2f2f2f;
+    font-size: 12px;
   }
 }
 
