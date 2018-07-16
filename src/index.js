@@ -2,6 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import mockData from './api/mockData';
+
+const checkLocalStorageData = () => {
+  const datalocalStorage = localStorage.getItem('mydata');
+  console.log(datalocalStorage);
+  if (!datalocalStorage ||  JSON.parse(datalocalStorage).length === 0 ){
+    localStorage.setItem('mydata', JSON.stringify(mockData));
+  }else{
+
+  }
+};
+
+checkLocalStorageData();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

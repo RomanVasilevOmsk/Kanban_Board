@@ -13,6 +13,7 @@ class Column extends React.Component {
         </div>
         <CardsList
           columnId = {this.props.columnId}
+          columnName = {this.props.columnName}
         />
       </div>
     );

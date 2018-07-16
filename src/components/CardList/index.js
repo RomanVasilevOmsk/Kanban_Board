@@ -2,52 +2,30 @@ import React from 'react';
 import CardItem from '../CardItem';
 import PropTypes from 'prop-types';
 
+
+
+
 class CardsList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      cardData: JSON.parse(localStorage.getItem('mydata'))
-      // cardData: [
-      //   {
-      //     id: 1,
-      //     idColumn:2,
-      //     cardName: 'Fixed style header',
-      //   },
-      //   {
-      //     id: 2,
-      //     idColumn:4,
-      //     cardName: 'Change color footer',
-      //   },
-      //   {
-      //     id: 3,
-      //     idColumn:2,
-      //     cardName: 'Add ico ',
-      //   },
-      //   {
-      //     id: 4,
-      //     idColumn:2,
-      //     cardName: 'Fixed adding data',
-      //   },
-      //   {
-      //     id: 5,
-      //     idColumn:1,
-      //     cardName: 'Fixed navigation',
-      //   }
-      //
-      // ]
+      cardData: JSON.parse(localStorage.getItem('mydata')),
     };
   }
 
-  saveToLocalStorage = () => {
-    localStorage.setItem('mydata', JSON.stringify(this.state.cardData));
+  deleteCard = (cardId) => {
+    const newState = this.state.cardData.filter(card => card.id !== cardId);
+    this.setState({
+      cardData: newState
+    });
+    this.saveToLocalStorage(newState)
+  };
 
-    const dataLocal = JSON.parse(localStorage.getItem('mydata'));
-    console.log(dataLocal);
+  saveToLocalStorage = (newState) => {
+    localStorage.setItem('mydata', JSON.stringify(newState))
   };
 
   render() {
-    //localStorage.setItem('mydata', JSON.stringify(this.state.cardData));
-
     return (
       <div className="cards-list__wrapper">
         <div className="cards-list">
@@ -56,6 +34,8 @@ class CardsList extends React.Component {
               key={card.id}
               index={card.id}
               cardName = {card.cardName}
+              columnName = {this.props.columnName}
+              deleteCard = {this.deleteCard}
             />
           )}
         </div>
@@ -65,7 +45,8 @@ class CardsList extends React.Component {
 }
 
 CardsList.propTypes = {
-  columnId: PropTypes.number.isRequired
+  columnId: PropTypes.number.isRequired,
+  columnName: PropTypes.string.isRequired
 };
 
 export default CardsList;

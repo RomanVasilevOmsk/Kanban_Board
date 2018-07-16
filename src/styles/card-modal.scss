@@ -14,6 +14,14 @@
   border-radius: 2px;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
   &__overlay{
     position: fixed;
     top: 0px;
@@ -50,5 +58,29 @@
       outline: none;
       border-bottom: 1px solid #000;
     }
+  }
+  &__column-name{
+    color: #9a9a9a;
+  }
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
