@@ -3,13 +3,13 @@ This test project was bootstrapped with [Create React App].
 #### Installing a Dependency
 
 ```sh
-npm install --save react-router
+npm install 
 ```
 
 Alternatively you may use `yarn`:
 
 ```sh
-yarn add react-router
+yarn
 ```
 
 #### Launch of the project
