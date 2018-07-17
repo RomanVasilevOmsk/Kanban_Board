@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import CardsList from "../CardList";
 
@@ -23,6 +22,7 @@ class Column extends React.Component {
           saveToLocalStorage = {this.props.saveToLocalStorage}
           deleteCard = {this.props.deleteCard}
           addCard = {this.props.addCard}
+          editCard = {this.props.editCard}
         />
       </div>
     );
@@ -34,6 +34,7 @@ Column.propTypes = {
   columnName: PropTypes.string.isRequired,
   cardData: PropTypes.array.isRequired,
   saveToLocalStorage: PropTypes.func.isRequired,
+  editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired
 };
 

@@ -1,0 +1,39 @@
+{
+  "parser": "babel-eslint",
+  "extends": "standard",
+  "plugins": ["react"],
+  "env": {
+  "browser": true,
+    "es6": true,
+    "node": true
+},
+  "parserOptions": {
+  "ecmaVersion": 6,
+    "ecmaFeatures": {
+    "arrowFunctions": true,
+      "classes": true,
+      "generators": true,
+      "modules": true,
+      "jsx": true
+  }
+},
+  "globals": {
+  "__DEV__": false,
+    "__TEST__": false,
+    "__PROD__": false,
+    "__COVERAGE__": false,
+    "describe": true,
+    "jest": true,
+    "it": true,
+    "expect": true
+},
+  "rules": {
+  "max-len": [
+    2,
+    120,
+    2
+  ],
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+}
+}

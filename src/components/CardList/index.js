@@ -11,11 +11,13 @@ class CardsList extends React.Component {
             <CardItem
               key={card.id}
               index={card.id}
+              columnId = {card.idColumn}
               cardName = {card.cardName}
               author = {card.author}
               cardDescription = {card.description}
               columnName = {this.props.columnName}
               deleteCard = {this.props.deleteCard}
+              editCard = {this.props.editCard}
             />
           )}
         </div>
@@ -29,6 +31,7 @@ CardsList.propTypes = {
   columnName: PropTypes.string.isRequired,
   cardData: PropTypes.array.isRequired,
   saveToLocalStorage: PropTypes.func.isRequired,
+  editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired
 };
 

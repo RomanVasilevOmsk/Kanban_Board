@@ -6,7 +6,7 @@ import mockData from './api/mockData';
 
 const checkLocalStorageData = () => {
   const datalocalStorage = localStorage.getItem('mydata');
-  if (!datalocalStorage ||  JSON.parse(datalocalStorage).length === 0 ){
+  if (!datalocalStorage || JSON.parse(datalocalStorage).length === 0 ){
     localStorage.setItem('mydata', JSON.stringify(mockData));
   }
 };

@@ -11,7 +11,7 @@ class CardItem extends React.Component {
       cardName: props.cardName,
       cardDescription: props.cardDescription,
       index: props.index,
-      cardTitle: ''
+      cardTitle: props.cardName,
     };
 
     this.openModal = this.openModal.bind(this);
@@ -23,18 +23,21 @@ class CardItem extends React.Component {
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeTitleClick = this.handleChangeTitleClick.bind(this);
+    this.handleChangeNameCard = this.handleChangeNameCard.bind(this);
   }
 
   handleChangeName (event) {
     this.setState({
-      cardName: event.target.value,
-    })
+      cardTitle: event.target.value,
+    });
+    this.props.editCard(this.props.index, this.props.columnId, event.target.value)
   }
 
   handleChangeDescription (event) {
     this.setState({
       cardDescription: event.target.value
-    })
+    });
+    this.props.editCard(this.props.index, this.props.columnId,this.props.cardName, event.target.value)
   }
 
   handleSubmit(event) {
@@ -63,7 +66,10 @@ class CardItem extends React.Component {
   handleChangeTitle(event){
     this.setState({
       cardTitle: event.target.value
-    })
+    });
+  }
+  handleChangeNameCard(event){
+    this.props.editCard(this.props.index, this.props.columnId, event.target.value)
   }
 
   handleChangeTitleClick(event){
@@ -98,6 +104,7 @@ class CardItem extends React.Component {
                 className=""
                 onChange={this.handleChangeTitle}
                 onClick={this.handleChangeTitleClick}
+                onBlur={this.handleChangeNameCard}
                 value={this.state.cardTitle ? this.state.cardTitle : ''}
                 placeholder='New Card'
               />
@@ -110,8 +117,7 @@ class CardItem extends React.Component {
           </div>
         }
 
-        <Modal
-            isOpen={this.state.modalIsOpen}
+        <Modal isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             ariaHideApp={false}
@@ -125,7 +131,7 @@ class CardItem extends React.Component {
               <input
                 className="card-modal__name"
                 onChange={this.handleChangeName}
-                value={this.state.cardName ? this.state.cardName : ''}
+                value={this.state.cardTitle ? this.state.cardTitle : ''}
                 placeholder={this.state.cardName ? '' : 'Enter the name of the card'}
               />
               <p className="card-modal__author">
@@ -167,10 +173,12 @@ class CardItem extends React.Component {
 CardItem.propTypes = {
   cardName: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string,
   deleteCard: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired
+  editCard: PropTypes.func.isRequired,
+  index: PropTypes.string.isRequired
 };
 
 export default CardItem;
