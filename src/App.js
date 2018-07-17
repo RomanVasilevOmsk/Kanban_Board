@@ -4,14 +4,15 @@ import ColumnList from './components/ColumnList';
 import './styles/_base.scss';
 
 
+
 class App extends Component {
 
-  render() {
+  render () {
     return (
       <div className="App">
-       <Layout>
-         <ColumnList />
-       </Layout>
+        <Layout>
+          <ColumnList />
+        </Layout>
       </div>
     );
   }

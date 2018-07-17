@@ -32,7 +32,8 @@ CardsList.propTypes = {
   cardData: PropTypes.array.isRequired,
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired
+  deleteCard: PropTypes.func.isRequired,
+  author: PropTypes.string.isRequired
 };
 
 export default CardsList;

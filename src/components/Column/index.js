@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types';
-import CardsList from "../CardList";
+import CardsList from '../CardList';
 
 class Column extends React.Component {
   handleAddCard = (event) => {
@@ -23,6 +23,7 @@ class Column extends React.Component {
           deleteCard = {this.props.deleteCard}
           addCard = {this.props.addCard}
           editCard = {this.props.editCard}
+          author ={this.props.author}
         />
       </div>
     );
@@ -35,7 +36,8 @@ Column.propTypes = {
   cardData: PropTypes.array.isRequired,
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired
+  deleteCard: PropTypes.func.isRequired,
+  author: PropTypes.string.isRequired
 };
 
 export default Column;

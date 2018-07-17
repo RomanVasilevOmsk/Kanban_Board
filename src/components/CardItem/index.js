@@ -15,11 +15,9 @@ class CardItem extends React.Component {
     };
 
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeTitleClick = this.handleChangeTitleClick.bind(this);
@@ -39,22 +37,10 @@ class CardItem extends React.Component {
     });
     this.props.editCard(this.props.index, this.props.columnId,this.props.cardName, event.target.value)
   }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log('SEND');
-  }
-
-  openModal() {
+  openModal () {
     this.setState({modalIsOpen: true});
   }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    //this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
+  closeModal () {
     this.setState({modalIsOpen: false});
   }
 
@@ -82,32 +68,22 @@ class CardItem extends React.Component {
         className="card-item__wrapper"
         id={this.props.index}
       >
-        { this.props.cardName  ?
-          <div
-            onClick={this.openModal}
-            className="card-item__name"
+        { this.props.cardName ? <div onClick={this.openModal} className="card-item__name">{ this.props.cardName }
+          <button
+            onClick={this.handleDeleteCard}
+            className="column__del-card"
           >
-            { this.props.cardName }
-            <button
-              onClick={this.handleDeleteCard}
-              className="column__del-card"
-            >
               &times;
-            </button>
-          </div>
-          :
-            <div
-              onClick={this.openModal}
-              className="card-item__name"
-            >
-              <input
-                className=""
-                onChange={this.handleChangeTitle}
-                onClick={this.handleChangeTitleClick}
-                onBlur={this.handleChangeNameCard}
-                value={this.state.cardTitle ? this.state.cardTitle : ''}
-                placeholder='New Card'
-              />
+          </button>
+        </div> : <div onClick={this.openModal} className="card-item__name">
+          <input
+            className=""
+            onChange={this.handleChangeTitle}
+            onClick={this.handleChangeTitleClick}
+            onBlur={this.handleChangeNameCard}
+            value={this.state.cardTitle ? this.state.cardTitle : ''}
+            placeholder='New Card'
+          />
               <button
                 onClick={this.handleDeleteCard}
                 className="column__del-card"
@@ -118,7 +94,7 @@ class CardItem extends React.Component {
         }
 
         <Modal isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
+
             onRequestClose={this.closeModal}
             ariaHideApp={false}
             contentLabel="Example Modal"

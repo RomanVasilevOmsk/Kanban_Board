@@ -5,9 +5,9 @@ import registerServiceWorker from './registerServiceWorker';
 import mockData from './api/mockData';
 
 const checkLocalStorageData = () => {
-  const datalocalStorage = localStorage.getItem('mydata');
+  const datalocalStorage = localStorage.getItem('KanbanBoardData');
   if (!datalocalStorage || JSON.parse(datalocalStorage).length === 0 ){
-    localStorage.setItem('mydata', JSON.stringify(mockData));
+    localStorage.setItem('KanbanBoardData', JSON.stringify(mockData));
   }
 };
 
