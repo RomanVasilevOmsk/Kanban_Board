@@ -25,7 +25,7 @@ class ModalUser extends React.Component {
         <Modal
           isOpen={this.state.modalIsOpen}
           ariaHideApp={false}
-          className="card-modal"
+          className="card-modal user-modal"
           overlayClassName="card-modal__overlay"
         >
           <ModalUserForm

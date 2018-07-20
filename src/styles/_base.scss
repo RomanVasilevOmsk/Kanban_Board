@@ -1,13 +1,16 @@
 @import "vendor/normalize";
+@import "buttons";
 @import "column-list";
 @import "column";
+@import "header";
 
 @import "cards-list";
 @import "card";
 @import "card-modal";
+@import "user-form-modal";
 
 body{
-  background-color: #e6e6e6;
+  background-color: #0079bf;
   margin: 0;
   padding: 0;
   font-family: sans-serif;

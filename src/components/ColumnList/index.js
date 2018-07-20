@@ -14,6 +14,7 @@ class ColumnList extends React.Component {
       modalVisible: ( JSON.parse( localStorage.getItem('KanbanBoardUser')) ? false : true )
     };
   }
+
   addAuthorName = (authorName) => {
     const checkAuthor = localStorage.getItem('KanbanBoardUser');
     let visible = true;

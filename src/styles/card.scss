@@ -3,15 +3,15 @@
     &__name{
       padding: 15px 8px;
       position: relative;
+      color: #0078c0;
     }
     &__wrapper{
-      box-shadow: 0 1px 0 #cccccc8c;
-      background-color: #cccccc4d;
+      box-shadow: 0px 1px 9px #00639e85;
+      background-color: #fff;
       border-radius: 6px;
       margin-bottom: 10px;
       &:hover{
         cursor: pointer;
-        background-color: #cccccc69;
       }
     }
   }

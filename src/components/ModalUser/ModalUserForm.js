@@ -38,15 +38,15 @@ class ModalUserForm extends React.Component {
 
   render () {
     return (
-      <form>
+      <form className="user-form-modal">
         <input
-          className="card-modal__name"
+          className="user-form-modal__name"
           onChange={this.addAuthorNameInput}
           onKeyPress={this.addAuthorNameInput}
           value={this.state.authorInput ? this.state.authorInput : ''}
           placeholder={this.state.authorInput ? '' : 'Enter your name'}
         />
-        <button type="button" onClick={this.handleAddAuthorName} className="">OK</button>
+        <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">OK</button>
         { this.state.warningText !== '' ? <p>{this.state.warningText} </p> : '' }
       </form>
     );

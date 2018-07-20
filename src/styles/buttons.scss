@@ -1,0 +1,26 @@
+.btn{
+  &-ok{
+    color: #fff;
+    background-color: #0076c0;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 25px;
+    border-radius: 4px;
+    &:hover{
+      background-color: #015a92;
+    }
+  }
+  &-cancel{
+    color: #fff;
+    background-color: #eb5a46;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 25px;
+    border-radius: 4px;
+    &:hover{
+      background: #cf513d;
+    }
+  }
+}

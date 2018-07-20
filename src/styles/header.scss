@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Kalam');
+
+.header{
+  &__wrapper{
+    background-color: #fff;
+    padding-bottom: 11px;
+  }
+  &__title{
+    font-family: 'Kalam', cursive;
+    margin: 0;
+    text-align: center;
+    color: #0078c0;
+    text-transform: uppercase;
+    border-bottom: 4px solid #0078c0;
+    padding: 18px 0 15px 0;
+  }
+}

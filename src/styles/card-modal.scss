@@ -6,11 +6,10 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  border: 1px solid rgb(204, 204, 204);
+  border: 4px solid #0078c0;
   overflow: auto;
   outline: none;
-  padding: 20px;
-  background-color: #edeff0;
+  background-color: #fff;
   border-radius: 2px;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -20,42 +19,34 @@
   animation-fill-mode: both;
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+  padding: 45px;
   &__overlay{
     position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: #00253ca8;
   }
   &__close{
     border: none;
     border-radius: 10px;
     width: 26px;
     height: 26px;
-    background-color: #eee;
+    background-color: #0078c0;
+    color: #fff;
     text-align: center;
     display: flex;
     justify-content: center;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 15px;
+    top: 12px;
     opacity: 0.5;
     &:hover{
       opacity: 1;
     }
   }
-  &__name{
-    font-size: 20px;
-    border: 1px solid transparent;
-    background-color: inherit;
-    font-weight: 600;
-    color: #272727;
-    &:active, &:focus{
-      outline: none;
-      border-bottom: 1px solid #000;
-    }
-  }
+
   &__column-name{
     color: #9a9a9a;
   }

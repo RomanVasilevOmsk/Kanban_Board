@@ -48,11 +48,11 @@ Column.propTypes = {
   deleteCard: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
   addCard: PropTypes.func.isRequired,
-  commentsData: PropTypes.array.isRequired,
-  addComment: PropTypes.func.isRequired,
-  changeColumnName: PropTypes.func.isRequired,
-  delComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired
+  commentsData: PropTypes.array,
+  addComment: PropTypes.func,
+  changeColumnName: PropTypes.func,
+  delComment: PropTypes.func,
+  editComment: PropTypes.func
 };
 
 export default Column;
