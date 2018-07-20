@@ -1,19 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import CardsList from '../CardList';
+import ColumnTitle from './ColumnTitle';
+import AddCardButton from './AddCardButton';
 
 class Column extends React.Component {
-  handleAddCard = (event) => {
-    event.preventDefault();
-    this.props.addCard(this.props.columnId);
-  };
-
-  render() {
+  render () {
     return (
       <div className="column__wrapper">
         <div className="column__header">
-          <h3 className="column__name">{this.props.columnName}</h3>
-          <button className="column__add-card" onClick={this.handleAddCard}>+</button>
+          <ColumnTitle
+            columnId = {this.props.columnId}
+            changeNameColumn = {this.handleChangeNameColumn}
+            changeColumnName={this.props.changeColumnName}
+            columnName = {this.props.columnName}
+          />
+          <AddCardButton
+            addCard = {this.props.addCard}
+            columnId = {this.props.columnId}
+          />
         </div>
         <CardsList
           columnId = {this.props.columnId}
@@ -24,6 +29,10 @@ class Column extends React.Component {
           addCard = {this.props.addCard}
           editCard = {this.props.editCard}
           author ={this.props.author}
+          commentsData = {this.props.commentsData}
+          addComment = {this.props.addComment}
+          delComment = {this.props.delComment}
+          editComment = {this.props.editComment}
         />
       </div>
     );
@@ -37,7 +46,13 @@ Column.propTypes = {
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  addCard: PropTypes.func.isRequired,
+  commentsData: PropTypes.array.isRequired,
+  addComment: PropTypes.func.isRequired,
+  changeColumnName: PropTypes.func.isRequired,
+  delComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired
 };
 
 export default Column;

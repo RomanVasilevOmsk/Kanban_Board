@@ -3,14 +3,14 @@ import CardItem from '../CardItem';
 import PropTypes from 'prop-types';
 
 class CardsList extends React.Component {
-  render() {
+  render () {
     return (
       <div className="cards-list__wrapper">
         <div className="cards-list">
           { this.props.cardData.filter(card => card.idColumn === this.props.columnId).map((card) =>
             <CardItem
               key={card.id}
-              index={card.id}
+              cardId={card.id}
               columnId = {card.idColumn}
               cardName = {card.cardName}
               author = {card.author}
@@ -18,6 +18,10 @@ class CardsList extends React.Component {
               columnName = {this.props.columnName}
               deleteCard = {this.props.deleteCard}
               editCard = {this.props.editCard}
+              commentsData = {this.props.commentsData}
+              addComment = {this.props.addComment}
+              delComment = {this.props.delComment}
+              editComment = {this.props.editComment}
             />
           )}
         </div>
@@ -33,7 +37,11 @@ CardsList.propTypes = {
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  commentsData: PropTypes.array.isRequired,
+  addComment: PropTypes.func.isRequired,
+  delComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired
 };
 
 export default CardsList;
