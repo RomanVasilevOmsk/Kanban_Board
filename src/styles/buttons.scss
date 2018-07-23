@@ -7,11 +7,16 @@
     font-weight: 400;
     padding: 7px 25px;
     border-radius: 4px;
+    min-width: 100px;
     &:hover{
       background-color: #015a92;
     }
+    &[disabled]{
+      opacity: 0.6;
+    }
   }
   &-cancel{
+    min-width: 100px;
     color: #fff;
     background-color: #eb5a46;
     border: none;

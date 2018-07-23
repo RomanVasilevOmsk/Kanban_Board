@@ -6,7 +6,8 @@ class ModalCommentItemForm extends React.Component {
     super(props);
     this.state = {
       commentValue: this.props.commentText,
-      commentChange: false
+      commentChange: false,
+      saveButtonDisabled: true
     };
     this.editCommentValue = this.editCommentValue.bind(this);
     this.editCommentState = this.editCommentState.bind(this);
@@ -20,6 +21,16 @@ class ModalCommentItemForm extends React.Component {
     this.setState({
       commentValue: event.target.value
     });
+    if (event.target.value !== '') {
+      this.setState({
+        saveButtonDisabled: true
+      });
+    } else {
+      this.setState({
+        saveButtonDisabled: false
+      });
+    }
+
   }
 
   editComment () {
@@ -30,13 +41,14 @@ class ModalCommentItemForm extends React.Component {
   editCommentCancel () {
     this.setState({
       commentChange: false,
-      commentValue: this.state.commentValue,
+      commentValue: this.props.commentText,
     });
   }
 
   editCommentState() {
     this.setState({
-      commentChange: true
+      commentChange: true,
+      commentValue: this.props.commentText,
     });
   }
 
@@ -48,46 +60,52 @@ class ModalCommentItemForm extends React.Component {
     return (
       <div className="card-modal__comments-inner">
         <div className="card-modal__comments-text-wrapper">
-          <p className="card-modal__comments-author">{this.props.author} : </p>
+          <p className="card-modal__comments-author">{this.props.author} </p>
           { this.state.commentChange ?
-            <div>
+            <div className="card-modal__comments-block">
               <input
-                className = ""
+                className ="card-modal__comments-text-input"
                 value={this.state.commentValue}
                 onChange={this.editCommentValue}
+                autoFocus
               />
-              <button
-                type="button"
-                onClick={this.editComment}
-                className="card-modal__comments-edit-button"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={this.editCommentCancel}
-                className="card-modal__comments-edit-button"
-              >
-                Cancel
-              </button>
+              <div className="card-modal__comments-edit-wrapper">
+                <button
+                  type="button"
+                  onClick={this.editComment}
+                  disabled={ this.state.saveButtonDisabled ? false :  true}
+                  className="card-modal__comments-edit-button card-modal__comments-edit-button--ok btn-ok"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={this.editCommentCancel}
+                  className="card-modal__comments-edit-button btn-cancel"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
             :
-            <div>
+            <div className="card-modal__comments-block">
               <p className="card-modal__comments-text">{this.props.commentText} </p>
-              <button
-                type="button"
-                onClick={this.editCommentState}
-                className="card-modal__comments-edit-button"
-              >
-                Change
-              </button>
-              <button
-                type="button"
-                onClick={this.deleteComment}
-                className="card-modal__comments-edit-button"
-              >
-                Delete
-              </button>
+              <div className="card-modal__comments-edit-wrapper">
+                <button
+                  type="button"
+                  onClick={this.editCommentState}
+                  className="card-modal__comments-edit-button card-modal__comments-edit-button--ok  btn-ok"
+                >
+                  Change
+                </button>
+                <button
+                  type="button"
+                  onClick={this.deleteComment}
+                  className="card-modal__comments-edit-button btn-cancel"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           }
         </div>

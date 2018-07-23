@@ -8,17 +8,19 @@ class ModalCommentListForm extends React.Component {
     return (
       <form>
         <div className="card-modal__comments-wrapper">
-          <h3 className="card-modal__comments-title">Comments</h3>
-          { this.props.commentsData.filter(card => card.idCard === this.props.cardId).map((comment) =>
-            <ModalCommentItemForm
-              key={comment.id}
-              author = {comment.author}
-              commentId = {comment.id}
-              commentText = {comment.text}
-              delComment = {this.props.delComment}
-              editComment = {this.props.editComment}
-            />
-          )}
+          <h3 className="card-modal__comments-title card-modal__title">Comments</h3>
+          <div className="card-modal__comments-item-wrapper">
+            { this.props.commentsData.filter(card => card.idCard === this.props.cardId).map((comment) =>
+              <ModalCommentItemForm
+                key={comment.id}
+                author = {comment.author}
+                commentId = {comment.id}
+                commentText = {comment.text}
+                delComment = {this.props.delComment}
+                editComment = {this.props.editComment}
+              />
+            )}
+          </div>
         </div>
       </form>
     )

@@ -44,7 +44,7 @@ class ModalCard extends React.Component {
           addComment = {this.props.addComment}
         />
         {
-          this.props.commentsData ?
+          this.props.commentsData.filter(card => card.idCard === this.props.cardId).length !== 0 ?
             <ModalCommentListForm
               commentsData = {this.props.commentsData}
               cardId = {this.props.cardId}

@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import CardsList from '../CardList';
-import ColumnTitle from './ColumnTitle';
-import AddCardButton from './AddCardButton';
+import PropTypes from 'prop-types'
+import CardsList from '../CardList'
+import ColumnTitle from './ColumnTitle'
+import AddCardButton from './AddCardButton'
 
 class Column extends React.Component {
   render () {
@@ -35,7 +35,7 @@ class Column extends React.Component {
           editComment = {this.props.editComment}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -48,11 +48,11 @@ Column.propTypes = {
   deleteCard: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
   addCard: PropTypes.func.isRequired,
-  commentsData: PropTypes.array,
-  addComment: PropTypes.func,
-  changeColumnName: PropTypes.func,
-  delComment: PropTypes.func,
-  editComment: PropTypes.func
-};
+  commentsData: PropTypes.array.isRequired,
+  addComment: PropTypes.func.isRequired,
+  changeColumnName: PropTypes.func.isRequired,
+  delComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired
+}
 
-export default Column;
+export default Column

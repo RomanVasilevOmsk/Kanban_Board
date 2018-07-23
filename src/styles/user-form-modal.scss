@@ -4,14 +4,15 @@
   align-items: center;
   &__name{
     font-size: 20px;
-    border: 1px solid transparent;
     background-color: inherit;
     font-weight: 600;
-    color: #272727;
+    color: #0079bf;
     text-align: center;
+    border: 2px solid #fff;
+    border-bottom: 2px solid #0079bf;
     &:active, &:focus{
       outline: none;
-      border-bottom: 1px solid #000;
+      border-bottom: 2px solid #0079bf;
     }
   }
   &__btn{

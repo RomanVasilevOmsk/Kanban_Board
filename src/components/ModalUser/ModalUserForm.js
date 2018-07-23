@@ -45,6 +45,7 @@ class ModalUserForm extends React.Component {
           onKeyPress={this.addAuthorNameInput}
           value={this.state.authorInput ? this.state.authorInput : ''}
           placeholder={this.state.authorInput ? '' : 'Enter your name'}
+          autoFocus
         />
         <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">OK</button>
         { this.state.warningText !== '' ? <p>{this.state.warningText} </p> : '' }
