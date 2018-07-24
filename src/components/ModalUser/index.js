@@ -42,7 +42,7 @@ class ModalUser extends React.Component {
 ModalUser.propTypes = {
   addAuthorName: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
-  modalVisible: PropTypes.bool.isRequired,
+  modalVisible: PropTypes.bool.isRequired
 };
 
-export default ModalUser;
+export default ModalUser

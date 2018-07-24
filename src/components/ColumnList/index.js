@@ -4,7 +4,6 @@ import ModalUser from '../ModalUser'
 import PropTypes from 'prop-types';
 
 class ColumnList extends React.Component {
-
   render () {
     return (
       <div className="column-list__wrapper">
@@ -52,7 +51,7 @@ ColumnList.propTypes = {
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   addAuthorName: PropTypes.func.isRequired,
-  modalVisible: PropTypes.bool.isRequired,
+  modalVisible: PropTypes.bool.isRequired
 
 };
 

@@ -13,9 +13,9 @@ class ModalAddCommentForm extends React.Component {
     this.addButtonUnFocus = this.addButtonUnFocus.bind(this);
   }
 
-  handleChangeCommentValue (event){
+  handleChangeCommentValue (event) {
     this.setState({
-      commentValue: event.target.value,
+      commentValue: event.target.value
     });
     if (event.target.value !== '') {
       this.setState({
@@ -36,13 +36,11 @@ class ModalAddCommentForm extends React.Component {
     })
   }
 
-
   addButtonUnFocus () {
     this.setState({
       addButton: false
     });
   };
-
 
   render () {
     return (
@@ -59,7 +57,7 @@ class ModalAddCommentForm extends React.Component {
             type="button"
             className="btn-ok"
             onClick={this.handleAddComment}
-            disabled={ this.state.addButton ? false :  true}
+            disabled={ !this.state.addButton}
           >
               Add comment
           </button>

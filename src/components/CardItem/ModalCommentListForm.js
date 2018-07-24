@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ModalCommentItemForm from './ModalCommentItemForm';
 
 class ModalCommentListForm extends React.Component {
-
   render () {
     return (
       <form>
@@ -34,4 +33,4 @@ ModalCommentListForm.propTypes = {
   editComment: PropTypes.func.isRequired
 };
 
-export default ModalCommentListForm;
+export default ModalCommentListForm

@@ -5,7 +5,7 @@ class ColumnTitle extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      columnValue: this.props.columnName,
+      columnValue: this.props.columnName
     };
     this.handleChangeColumn = this.handleChangeColumn.bind(this);
   }

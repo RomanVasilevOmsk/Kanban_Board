@@ -27,8 +27,8 @@ class ModalDescriptionForm extends React.Component {
     }
   }
 
-  changeButton (){
-    this.props.editCard(this.props.cardId, this.props.columnId,this.props.cardName, this.state.cardDescription)
+  changeButton () {
+    this.props.editCard(this.props.cardId, this.props.columnId, this.props.cardName, this.state.cardDescription)
     this.setState({
       changeButton: false
     });
@@ -47,7 +47,7 @@ class ModalDescriptionForm extends React.Component {
           />
           <button
             type="button"
-            disabled={ this.state.changeButton ? false :  true}
+            disabled={ !this.state.changeButton}
             onClick={this.changeButton}
             className="card-modal__description-btn btn-ok" >Change</button>
         </div>
@@ -61,7 +61,7 @@ ModalDescriptionForm.propTypes = {
   columnId: PropTypes.number.isRequired,
   cardDescription: PropTypes.string,
   editCard: PropTypes.func.isRequired,
-  cardId: PropTypes.string.isRequired,
+  cardId: PropTypes.string.isRequired
 };
 
-export default ModalDescriptionForm;
+export default ModalDescriptionForm

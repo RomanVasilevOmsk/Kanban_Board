@@ -5,19 +5,19 @@ class ModalTitleForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      cardTitle: this.props.cardName,
+      cardTitle: this.props.cardName
     };
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeNameCard = this.handleChangeNameCard.bind(this);
   }
   handleChangeName (event) {
     this.setState({
-      cardTitle: event.target.value,
+      cardTitle: event.target.value
     });
     this.props.editCard(this.props.cardId, this.props.columnId, event.target.value)
   }
 
-  handleChangeNameCard (event){
+  handleChangeNameCard (event) {
     this.props.editCard(this.props.cardId, this.props.columnId, event.target.value)
   }
 
@@ -47,7 +47,7 @@ ModalTitleForm.propTypes = {
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
   editCard: PropTypes.func.isRequired,
-  cardId: PropTypes.string.isRequired,
+  cardId: PropTypes.string.isRequired
 };
 
-export default ModalTitleForm;
+export default ModalTitleForm

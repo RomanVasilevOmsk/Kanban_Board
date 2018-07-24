@@ -6,9 +6,7 @@ import ModalDescriptionForm from './ModalDescriptionForm';
 import ModalAddCommentForm from './ModalAddCommentForm';
 import ModalCommentListForm from './ModalCommentListForm';
 
-
 class ModalCard extends React.Component {
-
   closeModal () {
     this.props.closeModal(false);
   }
@@ -44,8 +42,8 @@ class ModalCard extends React.Component {
           addComment = {this.props.addComment}
         />
         {
-          this.props.commentsData.filter(card => card.idCard === this.props.cardId).length !== 0 ?
-            <ModalCommentListForm
+          this.props.commentsData.filter(card => card.idCard === this.props.cardId).length !== 0
+            ? <ModalCommentListForm
               commentsData = {this.props.commentsData}
               cardId = {this.props.cardId}
               delComment = {this.props.delComment}

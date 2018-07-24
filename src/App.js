@@ -22,7 +22,7 @@ class App extends Component {
       commentsData: getComments(),
       columnDataName: getColumn(),
       author: getUser(),
-      modalVisible: (getUser() ? false : true)
+      modalVisible: (!getUser())
     }
   }
 

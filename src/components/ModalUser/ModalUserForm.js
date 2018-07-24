@@ -22,7 +22,7 @@ class ModalUserForm extends React.Component {
   };
 
   handleAddAuthorName () {
-    if (this.state.authorInput !== ''){
+    if (this.state.authorInput !== '') {
       this.props.addAuthorName(this.state.authorInput);
       this.props.modalVisible();
     } else {
@@ -60,4 +60,4 @@ ModalUserForm.propTypes = {
   modalVisible: PropTypes.func.isRequired
 };
 
-export default ModalUserForm;
+export default ModalUserForm
