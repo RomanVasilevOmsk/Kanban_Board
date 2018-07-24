@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class ColumnTitle extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-      columnValue: this.props.columnName
+      columnValue: this.props.columnName,
     };
-    this.handleChangeColumn = this.handleChangeColumn.bind(this);
   }
 
   handleChangeNameColumn = () => {
@@ -19,11 +18,11 @@ class ColumnTitle extends React.Component {
       this.handleChangeNameColumn(event);
     }
     this.setState({
-      columnValue: event.target.value
+      columnValue: event.target.value,
     });
   };
 
-  render () {
+  render() {
     return (
       <input
         className="column__name"
@@ -39,7 +38,7 @@ class ColumnTitle extends React.Component {
 ColumnTitle.propTypes = {
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
-  changeColumnName: PropTypes.func.isRequired
+  changeColumnName: PropTypes.func.isRequired,
 };
 
 export default ColumnTitle;

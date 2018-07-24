@@ -1,39 +1,41 @@
-import React from 'react'
-import Column from '../Column'
-import ModalUser from '../ModalUser'
+import React from 'react';
 import PropTypes from 'prop-types';
+import Column from '../Column';
+import ModalUser from '../ModalUser';
+
 
 class ColumnList extends React.Component {
-  render () {
+  render() {
     return (
       <div className="column-list__wrapper">
         <div className="column-list">
-          { this.props.columnDataName.map((column) =>
-            <Column
+          { this.props.columnDataName.map(column =>
+            (<Column
               key={column.id}
-              columnId = {column.id}
-              columnName = {column.columnName}
-              cardData = {this.props.cardData}
-              saveToLocalStorage = {this.props.saveToLocalStorage}
-              deleteCard = {this.props.deleteCard}
-              addCard = {this.props.addCard}
-              editCard = {this.props.editCard}
-              author ={this.props.author}
-              commentsData = {this.props.commentsData}
-              addComment = {this.props.addComment}
-              changeColumnName = {this.props.changeColumnName}
-              delComment = {this.props.delComment}
-              editComment = {this.props.editComment}
+              columnId={column.id}
+              columnName={column.columnName}
+              cardData={this.props.cardData}
+              saveToLocalStorage={this.props.saveToLocalStorage}
+              deleteCard={this.props.deleteCard}
+              addCard={this.props.addCard}
+              editCard={this.props.editCard}
+              author={this.props.author}
+              commentsData={this.props.commentsData}
+              addComment={this.props.addComment}
+              changeColumnName={this.props.changeColumnName}
+              delComment={this.props.delComment}
+              editComment={this.props.editComment}
             />
-          )}
+          ))
+        }
         </div>
         <ModalUser
-          addAuthorName = {this.props.addAuthorName}
-          author ={this.props.author}
-          modalVisible = {this.props.modalVisible}
+          addAuthorName={this.props.addAuthorName}
+          author={this.props.author}
+          modalVisible={this.props.modalVisible}
         />
       </div>
-    )
+    );
   }
 }
 
@@ -51,8 +53,8 @@ ColumnList.propTypes = {
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   addAuthorName: PropTypes.func.isRequired,
-  modalVisible: PropTypes.bool.isRequired
+  modalVisible: PropTypes.bool.isRequired,
 
 };
 
-export default ColumnList
+export default ColumnList;

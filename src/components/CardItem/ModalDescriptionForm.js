@@ -2,39 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ModalDescriptionForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       cardDescription: this.props.cardDescription,
-      changeButton: false
+      changeButton: false,
     };
-    this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.changeButton = this.changeButton.bind(this);
   }
 
-  handleChangeDescription (event) {
+  handleChangeDescription = (event) => {
     this.setState({
-      cardDescription: event.target.value
+      cardDescription: event.target.value,
     });
     if (event.target.value !== '') {
       this.setState({
-        changeButton: true
+        changeButton: true,
       });
     } else {
       this.setState({
-        changeButton: false
+        changeButton: false,
       });
     }
   }
 
-  changeButton () {
-    this.props.editCard(this.props.cardId, this.props.columnId, this.props.cardName, this.state.cardDescription)
+  changeButton = () => {
+    this.props.editCard(this.props.cardId, this.props.columnId, this.props.cardName, this.state.cardDescription);
     this.setState({
-      changeButton: false
+      changeButton: false,
     });
   };
 
-  render () {
+  render() {
     return (
       <form>
         <div className="card-modal__description-wrapper">
@@ -47,9 +45,12 @@ class ModalDescriptionForm extends React.Component {
           />
           <button
             type="button"
-            disabled={ !this.state.changeButton}
+            disabled={!this.state.changeButton}
             onClick={this.changeButton}
-            className="card-modal__description-btn btn-ok" >Change</button>
+            className="card-modal__description-btn btn-ok"
+          >
+            Change
+          </button>
         </div>
       </form>
     );
@@ -61,7 +62,7 @@ ModalDescriptionForm.propTypes = {
   columnId: PropTypes.number.isRequired,
   cardDescription: PropTypes.string,
   editCard: PropTypes.func.isRequired,
-  cardId: PropTypes.string.isRequired
+  cardId: PropTypes.string.isRequired,
 };
 
-export default ModalDescriptionForm
+export default ModalDescriptionForm;

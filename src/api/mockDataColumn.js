@@ -1,18 +1,18 @@
 export default [
   {
     id: 1,
-    columnName: 'TODO'
+    columnName: 'TODO',
   },
   {
     id: 2,
-    columnName: 'In Progress'
+    columnName: 'In Progress',
   },
   {
     id: 3,
-    columnName: 'Testing'
+    columnName: 'Testing',
   },
   {
     id: 4,
-    columnName: 'Done'
-  }
-]
+    columnName: 'Done',
+  },
+];

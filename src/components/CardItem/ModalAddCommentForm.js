@@ -2,47 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ModalAddCommentForm extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      commentValue: '',
-      addButton: false
-    };
-    this.handleAddComment = this.handleAddComment.bind(this);
-    this.handleChangeCommentValue = this.handleChangeCommentValue.bind(this);
-    this.addButtonUnFocus = this.addButtonUnFocus.bind(this);
-  }
+  state = {
+    commentValue: '',
+    addButton: false,
+  };
 
-  handleChangeCommentValue (event) {
+  handleChangeCommentValue = (event) => {
     this.setState({
-      commentValue: event.target.value
+      commentValue: event.target.value,
     });
     if (event.target.value !== '') {
       this.setState({
-        addButton: true
+        addButton: true,
       });
     } else {
       this.setState({
-        addButton: false
+        addButton: false,
       });
     }
   };
 
-  handleAddComment () {
-    this.props.addComment(this.props.cardId, this.state.commentValue)
+  handleAddComment = () => {
+    this.props.addComment(this.props.cardId, this.state.commentValue);
     this.setState({
       commentValue: '',
-      addButton: false
-    })
+      addButton: false,
+    });
   }
 
-  addButtonUnFocus () {
+  addButtonUnFocus = () => {
     this.setState({
-      addButton: false
+      addButton: false,
     });
   };
 
-  render () {
+  render() {
     return (
       <form>
         <div className="card-modal__addComment-wrapper">
@@ -51,13 +45,13 @@ class ModalAddCommentForm extends React.Component {
             className="card-modal__addComment-text"
             value={this.state.commentValue}
             onChange={this.handleChangeCommentValue}
-            placeholder="Write comment">
-          </textarea>
+            placeholder="Write comment"
+          />
           <button
             type="button"
             className="btn-ok"
             onClick={this.handleAddComment}
-            disabled={ !this.state.addButton}
+            disabled={!this.state.addButton}
           >
               Add comment
           </button>
@@ -69,7 +63,7 @@ class ModalAddCommentForm extends React.Component {
 
 ModalAddCommentForm.propTypes = {
   cardId: PropTypes.string.isRequired,
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
 };
 
 export default ModalAddCommentForm;

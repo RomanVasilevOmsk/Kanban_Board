@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import uid from 'uid';
 import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 import './styles/_base.scss';
-import uid from 'uid';
 import {
   saveToLocalStorage,
   saveCommentsToLocalStorage,
@@ -11,71 +11,72 @@ import {
   getComments,
   getColumn,
   getUser,
-  setUser
-} from './api'
+  setUser,
+} from './api';
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      cardData: getData(),
-      commentsData: getComments(),
-      columnDataName: getColumn(),
-      author: getUser(),
-      modalVisible: (!getUser())
-    }
+  state = {
+    cardData: getData(),
+    commentsData: getComments(),
+    columnDataName: getColumn(),
+    author: getUser(),
+    modalVisible: (!getUser()),
   }
 
   addAuthorName = (authorName) => {
-    const checkAuthor = getUser()
-    let visible = true
-    let author = ''
+    const checkAuthor = getUser();
+    let visible = true;
+    let author = '';
     if (!checkAuthor) {
-      visible = true
-      author = authorName
+      visible = true;
+      author = authorName;
     } else {
-      author = authorName
-      visible = false
+      author = authorName;
+      visible = false;
     }
     this.setState({
       modalVisible: visible,
-      author: author
-    })
-    setUser(author)
+      author: author,
+    });
+    setUser(author);
   };
 
   deleteCard = (cardId) => {
-    const newState = this.state.cardData.filter(card => card.id !== cardId)
+    const newState = this.state.cardData.filter(card => card.id !== cardId);
     this.setState({
-      cardData: newState
-    })
-    saveToLocalStorage(newState)
+      cardData: newState,
+    });
+    saveToLocalStorage(newState);
   };
 
   addCard = (columnId) => {
     const newState = this.state.cardData
-      .concat([{id: uid(), idColumn: columnId, cardName: '', author: this.state.author, description: ''}])
+      .concat([{
+        id: uid(), idColumn: columnId, cardName: '', author: this.state.author, description: '',
+      }]);
     this.setState({
-      cardData: newState
-    })
-    saveToLocalStorage(newState)
+      cardData: newState,
+    });
+    saveToLocalStorage(newState);
   };
 
   addComment = (cardId, text) => {
     const newState = this.state.commentsData
-      .concat([{id: uid(), idCard: cardId, author: this.state.author, text: text}])
+      .concat([{
+        id: uid(), idCard: cardId, author: this.state.author, text: text,
+      }]);
     this.setState({
-      commentsData: newState
-    })
-    saveCommentsToLocalStorage(newState)
+      commentsData: newState,
+    });
+    saveCommentsToLocalStorage(newState);
   };
 
   delComment = (commentId) => {
-    const newState = this.state.commentsData.filter(comment => comment.id !== commentId)
+    const newState = this.state.commentsData.filter(comment => comment.id !== commentId);
     this.setState({
-      commentsData: newState
-    })
-    saveCommentsToLocalStorage(newState)
+      commentsData: newState,
+    });
+    saveCommentsToLocalStorage(newState);
   };
 
   editComment = (commentId, text) => {
@@ -83,16 +84,16 @@ class App extends Component {
       if (comment.id === commentId) {
         return {
           ...comment,
-          text: text
-        }
+          text: TextMetrics,
+        };
       } else {
-        return comment
+        return comment;
       }
-    })
+    });
     this.setState({
-      commentsData: newState
-    })
-    saveCommentsToLocalStorage(newState)
+      commentsData: newState,
+    });
+    saveCommentsToLocalStorage(newState);
   }
 
   editCard = (cardId, columnId, cardName, cardDescription) => {
@@ -101,16 +102,16 @@ class App extends Component {
         return {
           ...card,
           cardName: cardName,
-          description: cardDescription
-        }
+          description: cardDescription,
+        };
       } else {
-        return card
+        return card;
       }
-    })
+    });
     this.setState({
-      cardData: newState
-    })
-    saveToLocalStorage(newState)
+      cardData: newState,
+    });
+    saveToLocalStorage(newState);
   };
 
   changeColumnName = (ColumnId, columnName) => {
@@ -118,37 +119,37 @@ class App extends Component {
       if (column.id === ColumnId) {
         return {
           ...column,
-          columnName: columnName
-        }
+          columnName: columnName,
+        };
       } else {
-        return column
+        return column;
       }
-    })
+    });
     this.setState({
-      columnDataName: newState
-    })
-    saveColumnToLocalStorage(newState)
+      columnDataName: newState,
+    });
+    saveColumnToLocalStorage(newState);
   };
 
-  render () {
+  render() {
     return (
       <div className="App">
         <Layout>
           <ColumnList
-            columnDataName = { this.state.columnDataName }
-            cardData = {this.state.cardData }
-            saveToLocalStorage = {saveToLocalStorage}
-            deleteCard = {this.deleteCard}
-            addCard = {this.addCard}
-            editCard = {this.editCard}
-            author ={this.state.author}
-            commentsData = {this.state.commentsData}
-            addComment = {this.addComment}
-            changeColumnName = {this.changeColumnName}
-            delComment = {this.delComment}
-            editComment = {this.editComment}
-            addAuthorName = {this.addAuthorName}
-            modalVisible = {this.state.modalVisible}
+            columnDataName={this.state.columnDataName}
+            cardData={this.state.cardData}
+            saveToLocalStorage={saveToLocalStorage}
+            deleteCard={this.deleteCard}
+            addCard={this.addCard}
+            editCard={this.editCard}
+            author={this.state.author}
+            commentsData={this.state.commentsData}
+            addComment={this.addComment}
+            changeColumnName={this.changeColumnName}
+            delComment={this.delComment}
+            editComment={this.editComment}
+            addAuthorName={this.addAuthorName}
+            modalVisible={this.state.modalVisible}
           />
         </Layout>
       </div>

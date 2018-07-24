@@ -4,22 +4,22 @@ import PropTypes from 'prop-types';
 import ModalUserForm from './ModalUserForm';
 
 class ModalUser extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       modalIsOpen: this.props.modalVisible,
       authorInput: '',
-      warningText: ''
+      warningText: '',
     };
   }
 
   closeModal = () => {
-    this.setState(
-      {modalIsOpen: false}
-    );
+    this.setState({
+      modalIsOpen: false,
+    });
   };
 
-  render () {
+  render() {
     return (
       <div className="column-list__wrapper">
         <Modal
@@ -29,9 +29,9 @@ class ModalUser extends React.Component {
           overlayClassName="card-modal__overlay"
         >
           <ModalUserForm
-            addAuthorName = {this.props.addAuthorName}
-            modalIsOpen = {this.state.modalIsOpen}
-            modalVisible = {this.closeModal}
+            addAuthorName={this.props.addAuthorName}
+            modalIsOpen={this.state.modalIsOpen}
+            modalVisible={this.closeModal}
           />
         </Modal>
       </div>
@@ -42,7 +42,7 @@ class ModalUser extends React.Component {
 ModalUser.propTypes = {
   addAuthorName: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
-  modalVisible: PropTypes.bool.isRequired
+  modalVisible: PropTypes.bool.isRequired,
 };
 
-export default ModalUser
+export default ModalUser;
