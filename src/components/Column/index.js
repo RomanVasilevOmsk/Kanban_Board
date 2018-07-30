@@ -11,8 +11,8 @@ class Column extends React.Component {
         <div className="column__header">
           <ColumnTitle
             columnId={this.props.columnId}
-            changeNameColumn={this.handleChangeNameColumn}
-            changeColumnName={this.props.changeColumnName}
+            // changeNameColumn={this.handleChangeNameColumn}
+            // changeColumnName={this.props.changeColumnName}
             columnName={this.props.columnName}
           />
           <AddCardButton
@@ -46,7 +46,7 @@ Column.propTypes = {
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   addCard: PropTypes.func.isRequired,
   commentsData: PropTypes.array.isRequired,
   addComment: PropTypes.func.isRequired,

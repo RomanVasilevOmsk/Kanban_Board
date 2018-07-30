@@ -13,6 +13,8 @@ export const getComments = () => JSON.parse(localStorage.getItem('KanbanBoardCom
 
 export const getColumn = () => JSON.parse(localStorage.getItem('KanbanBoardColumn'));
 
-export const getUser = () => JSON.parse(localStorage.getItem('KanbanBoardUser'));
+// export const getUser = () => JSON.parse(localStorage.getItem('KanbanBoardUser'));
+
+export const getUser = state => (this.state.user);
 
 export const setUser = author => localStorage.setItem('KanbanBoardUser', JSON.stringify(author));

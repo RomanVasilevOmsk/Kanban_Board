@@ -36,7 +36,7 @@ CardsList.propTypes = {
   saveToLocalStorage: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   commentsData: PropTypes.array.isRequired,
   addComment: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,

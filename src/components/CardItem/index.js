@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ModalCard from './ModalCard';
 import CardTitle from './CardTitle';
+import ColumnList from "../ColumnList";
 
 class CardItem extends React.Component {
     state = {
@@ -21,6 +22,7 @@ class CardItem extends React.Component {
   };
 
   render() {
+
     return (
       <div className="card-item__wrapper">
         <CardTitle
@@ -42,6 +44,7 @@ class CardItem extends React.Component {
           cardTitle={this.state.cardTitle}
           columnId={this.props.columnId}
           columnName={this.props.columnName}
+          cardAuthor={this.props.cardAuthor}
           author={this.props.author}
           editCard={this.props.editCard}
           commentsData={this.props.commentsData}
@@ -54,8 +57,11 @@ class CardItem extends React.Component {
   }
 }
 
+
+
 CardItem.propTypes = {
   cardName: PropTypes.string.isRequired,
+  cardAuthor: PropTypes.string,
   author: PropTypes.string.isRequired,
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,

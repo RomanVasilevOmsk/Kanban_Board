@@ -25,7 +25,7 @@ class ModalCard extends React.Component {
         <ModalTitleForm
           columnName={this.props.columnName}
           cardId={this.props.cardId}
-          author={this.props.author}
+          cardAuthor={this.props.cardAuthor}
           cardName={this.props.cardName}
           columnId={this.props.columnId}
           editCard={this.props.editCard}
@@ -45,6 +45,7 @@ class ModalCard extends React.Component {
           this.props.commentsData.filter(card => card.idCard === this.props.cardId).length !== 0
             ? <ModalCommentListForm
               commentsData={this.props.commentsData}
+              author={this.props.author}
               cardId={this.props.cardId}
               delComment={this.props.delComment}
               editComment={this.props.editComment}
@@ -57,6 +58,7 @@ class ModalCard extends React.Component {
 
 ModalCard.propTypes = {
   cardName: PropTypes.string.isRequired,
+  cardAuthor: PropTypes.string,
   author: PropTypes.string.isRequired,
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,

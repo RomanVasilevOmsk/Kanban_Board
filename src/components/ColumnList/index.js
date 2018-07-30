@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import Column from '../Column';
 import ModalUser from '../ModalUser';
 
-
 class ColumnList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: (!this.props.author),
+    };
+  }
+
   render() {
     return (
       <div className="column-list__wrapper">
@@ -30,14 +36,16 @@ class ColumnList extends React.Component {
         }
         </div>
         <ModalUser
-          addAuthorName={this.props.addAuthorName}
-          author={this.props.author}
-          modalVisible={this.props.modalVisible}
+          // addAuthorName={this.props.addAuthorName}
+          // author={this.props.author}
+          modalVisible={this.state.modalVisible}
         />
       </div>
     );
   }
-}
+};
+
+
 
 ColumnList.propTypes = {
   columnDataName: PropTypes.array.isRequired,
@@ -52,9 +60,9 @@ ColumnList.propTypes = {
   changeColumnName: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
-  addAuthorName: PropTypes.func.isRequired,
-  modalVisible: PropTypes.bool.isRequired,
+  // addAuthorName: PropTypes.func.isRequired,
 
 };
+
 
 export default ColumnList;

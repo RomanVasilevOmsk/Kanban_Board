@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { addUser } from '../../reducers/userReducer';
 
 class ModalUserForm extends React.Component {
   state = {
@@ -17,7 +20,8 @@ class ModalUserForm extends React.Component {
 
   handleAddAuthorName = () => {
     if (this.state.authorInput !== '') {
-      this.props.addAuthorName(this.state.authorInput);
+      // this.props.addAuthorName(this.state.authorInput);
+      this.props.addUser(this.state.authorInput);
       this.props.modalVisible();
     } else {
       this.showWarningName();
@@ -49,9 +53,13 @@ class ModalUserForm extends React.Component {
 }
 
 ModalUserForm.propTypes = {
-  addAuthorName: PropTypes.func.isRequired,
+  // addAuthorName: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
   modalVisible: PropTypes.func.isRequired,
 };
 
-export default ModalUserForm;
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  addUser,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(ModalUserForm);

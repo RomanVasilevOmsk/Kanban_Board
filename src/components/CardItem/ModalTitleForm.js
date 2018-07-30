@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
+
 class ModalTitleForm extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +36,7 @@ class ModalTitleForm extends React.Component {
           placeholder={this.state.cardTitle ? '' : 'Enter the name of the card'}
         />
         <p className="card-modal__author">
-          {this.props.author ? this.props.author : 'Author'}
+          {this.props.cardAuthor ? this.props.cardAuthor : 'Author'}
         </p>
       </form>
     );
@@ -43,7 +45,7 @@ class ModalTitleForm extends React.Component {
 
 ModalTitleForm.propTypes = {
   cardName: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  cardAuthor: PropTypes.string,
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
   editCard: PropTypes.func.isRequired,

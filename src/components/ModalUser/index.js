@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import ModalUserForm from './ModalUserForm';
 
+
 class ModalUser extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class ModalUser extends React.Component {
           overlayClassName="card-modal__overlay"
         >
           <ModalUserForm
-            addAuthorName={this.props.addAuthorName}
+            // addAuthorName={this.props.addAuthorName}
             modalIsOpen={this.state.modalIsOpen}
             modalVisible={this.closeModal}
           />
@@ -39,9 +40,10 @@ class ModalUser extends React.Component {
   }
 }
 
+
 ModalUser.propTypes = {
-  addAuthorName: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
+  // addAuthorName: PropTypes.func.isRequired,
+  // author: PropTypes.string,
   modalVisible: PropTypes.bool.isRequired,
 };
 

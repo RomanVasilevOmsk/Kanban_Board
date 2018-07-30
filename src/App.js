@@ -1,45 +1,65 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// import Immutable from 'immutable';
 import uid from 'uid';
+import { bindActionCreators } from 'redux';
+
 import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
+
+import { fetchColumns } from './reducers/columns';
+
 import './styles/_base.scss';
+
+import { getColumnName } from './selectors';
+
 import {
   saveToLocalStorage,
   saveCommentsToLocalStorage,
-  saveColumnToLocalStorage,
+  // saveColumnToLocalStorage,
   getData,
   getComments,
   getColumn,
   getUser,
   setUser,
-} from './api';
+} from './api/';
+// import {addUser} from './actions';
 
 class App extends Component {
   state = {
+    isLoaded: false,
     cardData: getData(),
     commentsData: getComments(),
-    columnDataName: getColumn(),
-    author: getUser(),
-    modalVisible: (!getUser()),
-  }
-
-  addAuthorName = (authorName) => {
-    const checkAuthor = getUser();
-    let visible = true;
-    let author = '';
-    if (!checkAuthor) {
-      visible = true;
-      author = authorName;
-    } else {
-      author = authorName;
-      visible = false;
-    }
-    this.setState({
-      modalVisible: visible,
-      author: author,
-    });
-    setUser(author);
+    // columnDataName: getColumn(),
+    // author: '',
+    // modalVisible: (!getUser()),
+    // modalVisible: (!this.props.author),
   };
+
+  componentDidMount = () => {
+    this.props.fetchColumns()
+      .then(() => this.setState({
+        isLoaded: true,
+      }));
+  };
+
+  // addAuthorName = (authorName) => {
+  //   const checkAuthor = this.props.author;
+  //   let visible = true;
+  //   let author = '';
+  //   if (!checkAuthor) {
+  //     visible = true;
+  //     author = authorName;
+  //   } else {
+  //     author = authorName;
+  //     visible = false;
+  //   }
+  //   this.setState({
+  //     modalVisible: visible,
+  //     // author: author,
+  //   });
+  //   setUser(author);
+  // };
 
   deleteCard = (cardId) => {
     const newState = this.state.cardData.filter(card => card.id !== cardId);
@@ -52,7 +72,7 @@ class App extends Component {
   addCard = (columnId) => {
     const newState = this.state.cardData
       .concat([{
-        id: uid(), idColumn: columnId, cardName: '', author: this.state.author, description: '',
+        id: uid(), idColumn: columnId, cardName: '', author: this.props.author, description: '',
       }]);
     this.setState({
       cardData: newState,
@@ -63,7 +83,7 @@ class App extends Component {
   addComment = (cardId, text) => {
     const newState = this.state.commentsData
       .concat([{
-        id: uid(), idCard: cardId, author: this.state.author, text: text,
+        id: uid(), idCard: cardId, author: this.props.author, text: text,
       }]);
     this.setState({
       commentsData: newState,
@@ -132,23 +152,24 @@ class App extends Component {
   };
 
   render() {
+    if (!this.state.isLoaded) return null;
     return (
       <div className="App">
         <Layout>
           <ColumnList
-            columnDataName={this.state.columnDataName}
+            columnDataName={this.props.columnDataName}
             cardData={this.state.cardData}
             saveToLocalStorage={saveToLocalStorage}
             deleteCard={this.deleteCard}
             addCard={this.addCard}
             editCard={this.editCard}
-            author={this.state.author}
+            author={this.props.author}
             commentsData={this.state.commentsData}
             addComment={this.addComment}
             changeColumnName={this.changeColumnName}
             delComment={this.delComment}
             editComment={this.editComment}
-            addAuthorName={this.addAuthorName}
+            // addAuthorName={this.addAuthorName}
             modalVisible={this.state.modalVisible}
           />
         </Layout>
@@ -157,4 +178,16 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    author: state.getIn(['userName', 'userName']),
+    columnDataName: getColumnName(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchColumns,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

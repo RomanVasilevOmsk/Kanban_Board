@@ -4,6 +4,7 @@ import ModalCommentItemForm from './ModalCommentItemForm';
 
 class ModalCommentListForm extends React.Component {
   render() {
+      console.log('list',this.props.author);
     return (
       <form>
         <div className="card-modal__comments-wrapper">
@@ -12,7 +13,7 @@ class ModalCommentListForm extends React.Component {
             { this.props.commentsData.filter(card => card.idCard === this.props.cardId).map(comment =>
               (<ModalCommentItemForm
                 key={comment.id}
-                author={comment.author}
+                author={this.props.author}
                 commentId={comment.id}
                 commentText={comment.text}
                 delComment={this.props.delComment}
@@ -28,6 +29,7 @@ class ModalCommentListForm extends React.Component {
 
 ModalCommentListForm.propTypes = {
   commentsData: PropTypes.array.isRequired,
+  author: PropTypes.string.isRequired,
   cardId: PropTypes.string.isRequired,
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,

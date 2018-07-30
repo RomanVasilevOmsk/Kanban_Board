@@ -50,6 +50,7 @@ class ModalCommentItemForm extends React.Component {
   }
 
   render() {
+    console.log('item',this.props.author);
     return (
       <div className="card-modal__comments-inner">
         <div className="card-modal__comments-text-wrapper">

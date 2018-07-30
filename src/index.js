@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import reducers from './reducers';
+
 import mockData from './api/mockData';
 import mockDataComments from './api/mockDataComments';
 import mockDataColumn from './api/mockDataColumn';
@@ -27,9 +33,21 @@ const checkLocalStorageDataColumn = () => {
   }
 };
 
-checkLocalStorageDataColumn();
+// checkLocalStorageDataColumn();
 checkLocalStorageData();
 checkLocalStorageDataComments();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+
+console.log(store.getState());
+
+store.subscribe(()=>{
+  console.log(store.getState());
+});
+
+ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root'));
 registerServiceWorker();

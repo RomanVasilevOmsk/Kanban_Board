@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import {editColumn, fetchColumns} from '../../reducers/columns';
+import {getColumnName} from "../../selectors";
 
 class ColumnTitle extends React.Component {
   constructor(props) {
@@ -10,7 +14,7 @@ class ColumnTitle extends React.Component {
   }
 
   handleChangeNameColumn = () => {
-    this.props.changeColumnName(this.props.columnId, this.state.columnValue);
+    this.props.editColumn(this.props.columnId, this.state.columnValue);
   };
 
   handleChangeColumn = (event) => {
@@ -38,7 +42,11 @@ class ColumnTitle extends React.Component {
 ColumnTitle.propTypes = {
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
-  changeColumnName: PropTypes.func.isRequired,
 };
 
-export default ColumnTitle;
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  editColumn,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(ColumnTitle);
