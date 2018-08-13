@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { addUser } from '../../reducers/userReducer';
+import { addUser } from '../../reducers/userReducer/actions';
 
 class ModalUserForm extends React.Component {
   state = {

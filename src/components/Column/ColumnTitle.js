@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import {editColumn, fetchColumns} from '../../reducers/columns';
-import {getColumnName} from "../../selectors";
+import { editColumn } from '../../reducers/columns/actions';
+
 
 class ColumnTitle extends React.Component {
   constructor(props) {

@@ -1,7 +1,6 @@
 import { fromJS } from 'immutable';
 import ActionTypes from '../../actionTypes';
 
-import { fetchColumnsRequest } from '../../api';
 
 const initialState = fromJS({
   isFetching: false,
@@ -9,30 +8,7 @@ const initialState = fromJS({
 });
 
 
-export const fetchColumns = (id, name) => (dispatch, getState) => {
-  dispatch({
-    type: ActionTypes.FETCH_COLUMN,
-    isFetching: true,
-  });
-  return fetchColumnsRequest(id, name)
-    .then((res) => {
-      dispatch({
-        type: ActionTypes.FETCH_COLUMN_SUCCESS,
-        columns: res.data.columns,
-        isFetching: false,
-      });
-    });
-};
 
-export const editColumn = (id, columnName) => (dispatch) => {
-  dispatch({
-    type: ActionTypes.EDIT_COLUMN,
-    payload: {
-      id,
-      columnName
-    },
-  });
-};
 
 // case EDIT_COLUMN:
 //     return [

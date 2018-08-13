@@ -7,11 +7,11 @@ import { bindActionCreators } from 'redux';
 import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
-import { fetchColumns } from './reducers/columns';
+import { fetchColumns } from './reducers/columns/actions';
 
 import './styles/_base.scss';
 
-import { getColumnName } from './selectors';
+import { getColumnName, getAuthorName } from './selectors';
 
 import {
   saveToLocalStorage,
@@ -181,7 +181,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    author: state.getIn(['userName', 'userName']),
+    author: getAuthorName(state),
     columnDataName: getColumnName(state),
   };
 };

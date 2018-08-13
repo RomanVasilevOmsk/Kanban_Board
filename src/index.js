@@ -39,10 +39,10 @@ checkLocalStorageDataComments();
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-console.log(store.getState());
+// console.log(store.getState());
 
 store.subscribe(()=>{
-  console.log(store.getState());
+  // console.log(store.getState());
 });
 
 ReactDOM.render(
