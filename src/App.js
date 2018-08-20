@@ -9,7 +9,7 @@ import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
 
-import './styles/_base.scss';
+import './assets/styles/_base.scss';
 
 import { getColumnName, getAuthorName } from './selectors';
 
@@ -37,10 +37,11 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    this.props.fetchColumns()
-      .then(() => this.setState({
+    this.props.fetchColumns().then(() =>
+      this.setState({
         isLoaded: true,
-      }));
+      }),
+    );
   };
 
   // addAuthorName = (authorName) => {
@@ -61,7 +62,7 @@ class App extends Component {
   //   setUser(author);
   // };
 
-  deleteCard = (cardId) => {
+  deleteCard = cardId => {
     const newState = this.state.cardData.filter(card => card.id !== cardId);
     this.setState({
       cardData: newState,
@@ -69,11 +70,16 @@ class App extends Component {
     saveToLocalStorage(newState);
   };
 
-  addCard = (columnId) => {
-    const newState = this.state.cardData
-      .concat([{
-        id: uid(), idColumn: columnId, cardName: '', author: this.props.author, description: '',
-      }]);
+  addCard = columnId => {
+    const newState = this.state.cardData.concat([
+      {
+        id: uid(),
+        idColumn: columnId,
+        cardName: '',
+        author: this.props.author,
+        description: '',
+      },
+    ]);
     this.setState({
       cardData: newState,
     });
@@ -81,17 +87,21 @@ class App extends Component {
   };
 
   addComment = (cardId, text) => {
-    const newState = this.state.commentsData
-      .concat([{
-        id: uid(), idCard: cardId, author: this.props.author, text: text,
-      }]);
+    const newState = this.state.commentsData.concat([
+      {
+        id: uid(),
+        idCard: cardId,
+        author: this.props.author,
+        text: text,
+      },
+    ]);
     this.setState({
       commentsData: newState,
     });
     saveCommentsToLocalStorage(newState);
   };
 
-  delComment = (commentId) => {
+  delComment = commentId => {
     const newState = this.state.commentsData.filter(comment => comment.id !== commentId);
     this.setState({
       commentsData: newState,
@@ -100,7 +110,7 @@ class App extends Component {
   };
 
   editComment = (commentId, text) => {
-    const newState = this.state.commentsData.map((comment) => {
+    const newState = this.state.commentsData.map(comment => {
       if (comment.id === commentId) {
         return {
           ...comment,
@@ -114,10 +124,10 @@ class App extends Component {
       commentsData: newState,
     });
     saveCommentsToLocalStorage(newState);
-  }
+  };
 
   editCard = (cardId, columnId, cardName, cardDescription) => {
-    const newState = this.state.cardData.map((card) => {
+    const newState = this.state.cardData.map(card => {
       if (card.id === cardId) {
         return {
           ...card,
@@ -135,7 +145,7 @@ class App extends Component {
   };
 
   changeColumnName = (ColumnId, columnName) => {
-    const newState = this.state.columnDataName.map((column) => {
+    const newState = this.state.columnDataName.map(column => {
       if (column.id === ColumnId) {
         return {
           ...column,
@@ -178,16 +188,22 @@ class App extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     author: getAuthorName(state),
     columnDataName: getColumnName(state),
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  fetchColumns,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchColumns,
+    },
+    dispatch,
+  );
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

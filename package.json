@@ -55,11 +55,21 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
-    "eslint": "^4.18.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "prettier": "^1.14.0",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3"
   },
@@ -101,5 +111,11 @@
     "presets": [
       "react-app"
     ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true
   }
 }

@@ -5,7 +5,6 @@ class CardTitle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: this.props.modalVisible,
       cardName: this.props.cardName,
       cardId: this.props.cardId,
       cardTitle: this.props.cardName,
@@ -13,7 +12,7 @@ class CardTitle extends React.Component {
   }
 
   handleOpenModal = () => {
-    this.props.openModal(true);
+    this.props.openModal();
   };
 
   handleChangeTitleClick = (event) => {

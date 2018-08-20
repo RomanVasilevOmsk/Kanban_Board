@@ -1,14 +1,10 @@
 import { fromJS } from 'immutable';
 import ActionTypes from '../../actionTypes';
 
-
 const initialState = fromJS({
   isFetching: false,
   columns: [],
 });
-
-
-
 
 // case EDIT_COLUMN:
 //     return [
@@ -20,16 +16,13 @@ const initialState = fromJS({
 //         }),
 
 const ACTION_HANDLERS = {
-  [ActionTypes.FETCH_COLUMN]: (state, action) => state
-    .set('isFetching', action.isFetching),
-  [ActionTypes.FETCH_COLUMN_SUCCESS]: (state, action) => state
-    .set('columns', fromJS(action.columns)),
+  [ActionTypes.FETCH_COLUMN]: (state, action) => state.set('isFetching', action.isFetching),
+  [ActionTypes.FETCH_COLUMN_SUCCESS]: (state, action) => state.set('columns', fromJS(action.columns)),
   [ActionTypes.EDIT_COLUMN]: (state, action) => {
     const { id } = action.payload;
-    const index = state.get('columns').findIndex(
-      (column) => column.get('id') === id )
+    const index = state.get('columns').findIndex(column => column.get('id') === id);
     return state.setIn(['columns', index, 'columnName'], fromJS(action.payload.columnName));
-  }
+  },
   // [REFRESH_PROFILE_INFO]: (state, action) => state
   //     .set('currentUser', fromJS(state.get('currentUser')).merge(fromJS(action.user))),
   // [GET_USER]: (state, action) => state

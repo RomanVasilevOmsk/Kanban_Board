@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
 import mockData from './api/mockData';
@@ -41,13 +40,13 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 // console.log(store.getState());
 
-store.subscribe(()=>{
+store.subscribe(() => {
   // console.log(store.getState());
 });
 
 ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root'));
-registerServiceWorker();
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
