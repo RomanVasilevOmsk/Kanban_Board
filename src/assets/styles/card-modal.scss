@@ -1,0 +1,204 @@
+.card-modal{
+  width: 100%;
+  max-width: 768px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  border: 4px solid #0078c0;
+  overflow: auto;
+  outline: none;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  padding: 45px;
+  &__title{
+    color: #0079bf;
+  }
+  &__name{
+    border: 2px solid #fff;
+    padding-bottom: 3px;
+    font-size: 18px;
+    margin-bottom: -3px;
+    &:active, &:focus{
+      outline: none;
+      background-image: url("../images/edit-ico.svg");
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-position: 100% 70%;
+      border-bottom: 2px solid #0079bf;
+      padding-right: 25px;
+    }
+  }
+
+  &__description{
+    &-text{
+      width: 100%;
+      resize: none;
+      border: 2px solid #0078c099;
+      padding: 6px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      &:active, &:focus{
+        outline: none;
+        border: 2px solid #0079bf;
+      }
+    }
+
+
+  }
+  &__addComment{
+    &-text {
+      width: 100%;
+      resize: none;
+      border: 2px solid #0078c099;
+      padding: 6px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      &:active, &:focus {
+        outline: none;
+        border: 2px solid #0079bf;
+      }
+    }
+  }
+  &__comments{
+    &-item-wrapper{
+      max-height: 319px;
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &-inner{
+      margin: 8px 0 8px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #0077bf2b;
+      &:last-child{
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+    &-title{
+      margin-bottom: 3px;
+    }
+    &-author{
+      margin: 0;
+      font-style: italic;
+      color: #0079bf;
+      font-size: 12px;
+    }
+    &-text{
+      background-color: #fff;
+      border-radius: 5px;
+      border: 2px solid #fff;
+      font-size: 17px;
+      margin: 8px 4px 10px 0px;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 4px;
+      &-input{
+        padding: 0;
+        margin: 8px 4px 10px 0px;
+        border: 2px solid #fff;
+        font-size: 17px;
+        border-bottom: 2px solid #0079bf;
+        padding-bottom: 4px;
+        &:active, &:focus{
+          background-image: url("../images/edit-ico.svg");
+          background-repeat: no-repeat;
+          background-size: 20px;
+          background-position: 100% 15%;
+          outline: none;
+          padding-bottom: 4px;
+          border: 2px solid #fff;
+          border-bottom: 2px solid #0079bf;
+        }
+      }
+    }
+    &-block{
+      display: flex;
+      flex-direction: column;
+    }
+    &-edit-wrapper{
+      display: flex;
+    }
+    &-edit-button--ok{
+        margin-right: 12px;
+    }
+  }
+  &__overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #00253ca8;
+  }
+  &__close{
+    border: none;
+    border-radius: 10px;
+    width: 26px;
+    height: 26px;
+    background-color: #0078c0;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    opacity: 0.5;
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  &__column-name{
+    color: #0079bf;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &__author{
+    margin: 0;
+    font-style: italic;
+    color: #0079bf;
+    font-size: 12px;
+  }
+  //&__comments-edit-button{
+  //  width: 20px;
+  //  height: 20px;
+  //  background-image: url("../assets/images/edit-ico.svg");
+  //  background-size: contain;
+  //  background-repeat: no-repeat;
+  //  background-color: inherit;
+  //  border: none;
+  //}
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
