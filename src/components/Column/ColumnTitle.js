@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { editColumn } from '../../reducers/columns/actions';
 
-
 class ColumnTitle extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,7 @@ class ColumnTitle extends React.Component {
     this.props.editColumn(this.props.columnId, this.state.columnValue);
   };
 
-  handleChangeColumn = (event) => {
+  handleChangeColumn = event => {
     if (event.charCode === 13) {
       this.handleChangeNameColumn(event);
     }
@@ -42,11 +41,18 @@ class ColumnTitle extends React.Component {
 ColumnTitle.propTypes = {
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
+  editColumn: PropTypes.func.isRequired,
 };
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      editColumn,
+    },
+    dispatch,
+  );
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  editColumn,
-}, dispatch);
-
-export default connect(null, mapDispatchToProps)(ColumnTitle);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ColumnTitle);

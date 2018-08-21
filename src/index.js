@@ -33,7 +33,7 @@ const checkLocalStorageDataColumn = () => {
 };
 
 // checkLocalStorageDataColumn();
-checkLocalStorageData();
+// checkLocalStorageData();
 checkLocalStorageDataComments();
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));

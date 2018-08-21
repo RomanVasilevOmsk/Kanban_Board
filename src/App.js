@@ -8,10 +8,11 @@ import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
+import { fetchCards } from './reducers/cards/actions';
 
 import './assets/styles/_base.scss';
 
-import { getColumnName, getAuthorName } from './selectors';
+import { getColumnName, getAuthorName, getCardData } from './selectors';
 
 import {
   saveToLocalStorage,
@@ -28,7 +29,8 @@ import {
 class App extends Component {
   state = {
     isLoaded: false,
-    cardData: getData(),
+    isLoadedCards: false,
+    // cardData: getData(),
     commentsData: getComments(),
     // columnDataName: getColumn(),
     // author: '',
@@ -40,6 +42,11 @@ class App extends Component {
     this.props.fetchColumns().then(() =>
       this.setState({
         isLoaded: true,
+      }),
+    );
+    this.props.fetchCards().then(() =>
+      this.setState({
+        isLoadedCards: true,
       }),
     );
   };
@@ -168,7 +175,7 @@ class App extends Component {
         <Layout>
           <ColumnList
             columnDataName={this.props.columnDataName}
-            cardData={this.state.cardData}
+            cardData={this.props.cardData}
             saveToLocalStorage={saveToLocalStorage}
             deleteCard={this.deleteCard}
             addCard={this.addCard}
@@ -192,6 +199,7 @@ const mapStateToProps = state => {
   return {
     author: getAuthorName(state),
     columnDataName: getColumnName(state),
+    cardData: getCardData(state),
   };
 };
 
@@ -199,6 +207,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchColumns,
+      fetchCards,
     },
     dispatch,
   );
