@@ -50,7 +50,7 @@ Column.propTypes = {
   addCard: PropTypes.func.isRequired,
   commentsData: PropTypes.array.isRequired,
   addComment: PropTypes.func.isRequired,
-  changeColumnName: PropTypes.func.isRequired,
+  // changeColumnName: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
 };

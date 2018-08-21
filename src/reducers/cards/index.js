@@ -6,15 +6,16 @@ const initialState = fromJS({
   cards: [],
 });
 
-
 const ACTION_HANDLERS = {
   [ActionTypes.FETCH_CARD]: (state, action) => state.set('isFetching', action.isFetching),
   [ActionTypes.FETCH_CARD_SUCCESS]: (state, action) => state.set('cards', fromJS(action.cards)),
-  // [ActionTypes.EDIT_COLUMN]: (state, action) => {
-  //   const { id } = action.payload;
-  //   const index = state.get('columns').findIndex(column => column.get('id') === id);
-  //   return state.setIn(['columns', index, 'columnName'], fromJS(action.payload.columnName));
-  // },
+  [ActionTypes.EDIT_CARD]: (state, action) => {
+    const { id } = action.payload;
+    const index = state.get('cards').findIndex(card => card.get('id') === id);
+    return state
+      .setIn(['cards', index, 'cardName'], fromJS(action.payload.cardName))
+      .setIn(['cards', index, 'description'], fromJS(action.payload.description));
+  },
 };
 
 export default function cardReducer(state = initialState, action) {

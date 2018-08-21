@@ -8,7 +8,7 @@ import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
-import { fetchCards } from './reducers/cards/actions';
+import { fetchCards, editCard } from './reducers/cards/actions';
 
 import './assets/styles/_base.scss';
 
@@ -24,6 +24,7 @@ import {
   getUser,
   setUser,
 } from './api/';
+import PropTypes from "prop-types";
 // import {addUser} from './actions';
 
 class App extends Component {
@@ -134,7 +135,7 @@ class App extends Component {
   };
 
   editCard = (cardId, columnId, cardName, cardDescription) => {
-    const newState = this.state.cardData.map(card => {
+    const newState = this.props.cardData.map(card => {
       if (card.id === cardId) {
         return {
           ...card,
@@ -152,7 +153,7 @@ class App extends Component {
   };
 
   changeColumnName = (ColumnId, columnName) => {
-    const newState = this.state.columnDataName.map(column => {
+    const newState = this.props.columnDataName.map(column => {
       if (column.id === ColumnId) {
         return {
           ...column,
@@ -179,11 +180,11 @@ class App extends Component {
             saveToLocalStorage={saveToLocalStorage}
             deleteCard={this.deleteCard}
             addCard={this.addCard}
-            editCard={this.editCard}
+            editCard={this.props.editCard}
             author={this.props.author}
             commentsData={this.state.commentsData}
             addComment={this.addComment}
-            changeColumnName={this.changeColumnName}
+            // changeColumnName={this.changeColumnName}
             delComment={this.delComment}
             editComment={this.editComment}
             // addAuthorName={this.addAuthorName}
@@ -194,6 +195,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  editCard: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => {
   return {
@@ -208,6 +213,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchColumns,
       fetchCards,
+      editCard,
     },
     dispatch,
   );

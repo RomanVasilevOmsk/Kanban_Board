@@ -28,7 +28,7 @@ class ColumnList extends React.Component {
               author={this.props.author}
               commentsData={this.props.commentsData}
               addComment={this.props.addComment}
-              changeColumnName={this.props.changeColumnName}
+              // changeColumnName={this.props.changeColumnName}
               delComment={this.props.delComment}
               editComment={this.props.editComment}
             />
@@ -57,7 +57,7 @@ ColumnList.propTypes = {
   author: PropTypes.string.isRequired,
   commentsData: PropTypes.array.isRequired,
   addComment: PropTypes.func.isRequired,
-  changeColumnName: PropTypes.func.isRequired,
+  // changeColumnName: PropTypes.func.isRequired,
   delComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   // addAuthorName: PropTypes.func.isRequired,
