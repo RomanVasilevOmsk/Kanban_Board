@@ -9,7 +9,7 @@ const initialState = fromJS({
 const ACTION_HANDLERS = {
   [ActionTypes.FETCH_CARD]: (state, action) => state.set('isFetching', action.isFetching),
   [ActionTypes.FETCH_CARD_SUCCESS]: (state, action) => state.set('cards', fromJS(action.cards)),
-  [ActionTypes.ADD_CARD]: (state, action) => state.setIn(['cards', action.payload.id], fromJS(action.payload)),
+  [ActionTypes.ADD_CARD]: (state, action) => state.update('cards', 'cards', cards => cards.concat([fromJS(action.payload)])),
   [ActionTypes.EDIT_CARD]: (state, action) => {
     const { id } = action.payload;
     const index = state.get('cards').findIndex(card => card.get('id') === id);
