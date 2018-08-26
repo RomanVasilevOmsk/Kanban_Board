@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ModalCommentItemForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       commentValue: this.props.commentText,
       commentChange: false,
       saveButtonDisabled: true,
     };
-  }
 
   editCommentValue = (event) => {
     this.setState({
@@ -26,7 +23,7 @@ class ModalCommentItemForm extends React.Component {
     }
   }
   editComment = () => {
-    this.props.editComment(this.props.cardId, this.props.commentId, this.state.commentValue);
+    this.props.editComment(this.props.commentId, this.state.commentValue);
     this.editCommentFocus();
   }
 
@@ -50,11 +47,12 @@ class ModalCommentItemForm extends React.Component {
   }
 
   deleteComment = () => {
-    this.props.delComment(this.props.commentId);
+    console.log('comments',this.props.comments);
+    this.props.deleteComment(this.props.commentId);
   }
 
   render() {
-    console.log('this.props.commentText', this.props.commentText);
+    console.log('comments',this.props.comments);
     return (
       <div className="card-modal__comments-inner">
         <div className="card-modal__comments-text-wrapper">

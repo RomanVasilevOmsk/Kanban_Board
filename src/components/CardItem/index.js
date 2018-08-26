@@ -25,8 +25,8 @@ class CardItem extends React.Component {
 
     openCardModal = () => {
       const {
-        cardName, cardDescription, cardId, columnId, columnName, cardAuthor, author, editCard, commentsData,
-          addComment, delComment, editComment
+        cardName, cardDescription, cardId, columnId, columnName, cardAuthor, author, editCard, comments,
+          addComment, deleteComment , editComment
       } = this.props;
       openContentModal({
         submit: (closeModal, values) => {
@@ -42,9 +42,9 @@ class CardItem extends React.Component {
           cardAuthor: cardAuthor,
           author: author,
           editCard: editCard,
-          commentsData: commentsData,
+          comments: comments,
           addComment: addComment,
-          delComment: delComment,
+          deleteComment: deleteComment,
           editComment: editComment,
         },
       })(ModalCard);

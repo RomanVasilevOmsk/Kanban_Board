@@ -2,12 +2,12 @@ import ActionTypes from '../../actionTypes';
 
 import { fetchColumnsRequest } from '../../api';
 
-export const fetchColumns = (id, name) => (dispatch, getState) => {
+export const fetchColumns = () => (dispatch, getState) => {
   dispatch({
     type: ActionTypes.FETCH_COLUMN,
     isFetching: true,
 });
-  return fetchColumnsRequest(id, name)
+  return fetchColumnsRequest()
     .then((res) => {
       dispatch({
         type: ActionTypes.FETCH_COLUMN_SUCCESS,

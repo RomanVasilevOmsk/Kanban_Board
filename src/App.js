@@ -8,18 +8,19 @@ import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
-import { fetchCards, editCard, editComment } from './reducers/cards/actions';
+import { fetchCards, editCard, deleteCard, addCard } from './reducers/cards/actions';
+import { fetchComments, editComment, deleteComment} from './reducers/comments/actions';
 
 import './assets/styles/_base.scss';
 
-import { getColumnName, getAuthorName, getCardData } from './selectors';
+import { getColumnName, getAuthorName, getCardData, getComments } from './selectors';
 
 import {
   saveToLocalStorage,
   saveCommentsToLocalStorage,
   // saveColumnToLocalStorage,
   getData,
-  getComments,
+  // getComments,
   getColumn,
   getUser,
   setUser,
@@ -31,6 +32,7 @@ class App extends Component {
   state = {
     isLoaded: false,
     isLoadedCards: false,
+    isLoadedComments: false,
     // cardData: getData(),
     // commentsData: getComments(),
     // columnDataName: getColumn(),
@@ -48,6 +50,11 @@ class App extends Component {
     this.props.fetchCards().then(() =>
       this.setState({
         isLoadedCards: true,
+      }),
+    );
+    this.props.fetchComments().then(() =>
+      this.setState({
+        isLoadedComments: true,
       }),
     );
   };
@@ -70,29 +77,29 @@ class App extends Component {
   //   setUser(author);
   // };
 
-  deleteCard = cardId => {
-    const newState = this.state.cardData.filter(card => card.id !== cardId);
-    this.setState({
-      cardData: newState,
-    });
-    saveToLocalStorage(newState);
-  };
+  // deleteCard = cardId => {
+  //   const newState = this.state.cardData.filter(card => card.id !== cardId);
+  //   this.setState({
+  //     cardData: newState,
+  //   });
+  //   saveToLocalStorage(newState);
+  // };
 
-  addCard = columnId => {
-    const newState = this.state.cardData.concat([
-      {
-        id: uid(),
-        idColumn: columnId,
-        cardName: '',
-        author: this.props.author,
-        description: '',
-      },
-    ]);
-    this.setState({
-      cardData: newState,
-    });
-    saveToLocalStorage(newState);
-  };
+  // addCard = columnId => {
+  //   const newState = this.state.cardData.concat([
+  //     {
+  //       id: uid(),
+  //       idColumn: columnId,
+  //       cardName: '',
+  //       author: this.props.author,
+  //       description: '',
+  //     },
+  //   ]);
+  //   this.setState({
+  //     cardData: newState,
+  //   });
+  //   saveToLocalStorage(newState);
+  // };
 
   addComment = (cardId, text) => {
     const newState = this.state.commentsData.concat([
@@ -178,14 +185,15 @@ class App extends Component {
             columnDataName={this.props.columnDataName}
             cardData={this.props.cardData}
             saveToLocalStorage={saveToLocalStorage}
-            deleteCard={this.deleteCard}
-            addCard={this.addCard}
+            deleteCard={this.props.deleteCard}
+            addCard={this.props.addCard}
             editCard={this.props.editCard}
             author={this.props.author}
+            comments={this.props.comments}
             // commentsData={this.state.commentsData}
             addComment={this.addComment}
             // changeColumnName={this.changeColumnName}
-            delComment={this.delComment}
+            deleteComment={this.props.deleteComment}
             editComment={this.props.editComment}
             // addAuthorName={this.addAuthorName}
             modalVisible={this.state.modalVisible}
@@ -199,6 +207,9 @@ class App extends Component {
 App.propTypes = {
   editCard: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  addCard: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -206,6 +217,7 @@ const mapStateToProps = state => {
     author: getAuthorName(state),
     columnDataName: getColumnName(state),
     cardData: getCardData(state),
+    comments: getComments(state),
   };
 };
 
@@ -214,8 +226,12 @@ const mapDispatchToProps = dispatch =>
     {
       fetchColumns,
       fetchCards,
+      fetchComments,
       editCard,
       editComment,
+      deleteComment,
+      deleteCard,
+      addCard
     },
     dispatch,
   );

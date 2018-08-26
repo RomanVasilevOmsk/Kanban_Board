@@ -26,10 +26,11 @@ class ColumnList extends React.Component {
               addCard={this.props.addCard}
               editCard={this.props.editCard}
               author={this.props.author}
+              comments={this.props.comments}
               // commentsData={this.props.commentsData}
               addComment={this.props.addComment}
               // changeColumnName={this.props.changeColumnName}
-              delComment={this.props.delComment}
+              deleteComment={this.props.deleteComment}
               editComment={this.props.editComment}
             />
           ))

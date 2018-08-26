@@ -9,6 +9,7 @@ const initialState = fromJS({
 const ACTION_HANDLERS = {
   [ActionTypes.FETCH_CARD]: (state, action) => state.set('isFetching', action.isFetching),
   [ActionTypes.FETCH_CARD_SUCCESS]: (state, action) => state.set('cards', fromJS(action.cards)),
+  [ActionTypes.ADD_CARD]: (state, action) => state.setIn(['cards', action.payload.id], fromJS(action.payload)),
   [ActionTypes.EDIT_CARD]: (state, action) => {
     const { id } = action.payload;
     const index = state.get('cards').findIndex(card => card.get('id') === id);
@@ -16,15 +17,12 @@ const ACTION_HANDLERS = {
       .setIn(['cards', index, 'cardName'], fromJS(action.payload.cardName))
       .setIn(['cards', index, 'description'], fromJS(action.payload.description));
   },
-  [ActionTypes.EDIT_COMMENT]: (state, action) => {
-    const { idCard, idComment } = action.payload;
-    const indexCard = state.get('cards').findIndex(card => card.get('id') === idCard);
-    const indexComment = state.getIn(['cards', indexCard, 'comments']).findIndex(comment => comment.get('id') === idComment);
-    console.log('indexCard',indexComment);
+  [ActionTypes.DELETE_CARD]: (state, action) => {
+    const { id } = action.payload;
+    const index = state.get('cards').findIndex(comment => comment.get('id') === id);
     return state
-      .setIn(['cards', indexCard, 'comments', indexComment, 'text'], fromJS(action.payload.text));
+      .deleteIn(['cards', index]);
   },
-
 };
 
 export default function cardReducer(state = initialState, action) {

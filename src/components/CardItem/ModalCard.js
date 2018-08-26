@@ -37,11 +37,11 @@ class ModalCard extends React.Component {
             addComment={this.props.addComment}
           />
          <ModalCommentListForm
-            commentsData={this.props.commentsData}
+            comments={this.props.comments}
             author={this.props.author}
             cardId={this.props.cardId}
             cardId={this.props.cardId}
-            delComment={this.props.delComment}
+            deleteComment={this.props.deleteComment}
             editComment={this.props.editComment}
           />
       </div>

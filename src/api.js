@@ -1,4 +1,4 @@
-export const fetchColumnsRequest = (id, name) => {
+export const fetchColumnsRequest = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -27,7 +27,7 @@ export const fetchColumnsRequest = (id, name) => {
   });
 };
 
-export const fetchCardsRequest = (id, idColumn, cardName, author, description) => {
+export const fetchCardsRequest = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -39,23 +39,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Fixed style header',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwqeff2',
-                  author: 'Admin',
-                  text: 'Comment1Вася',
-                },
-                {
-                  id: 'qwqeff3',
-                  author: 'Admin',
-                  text: 'Comment3Петя',
-                },
-                {
-                  id: 'qwqeff6',
-                  author: 'Admin',
-                  text: 'Comment44Даша',
-                },
-              ],
             },
             {
               id: 'fwrrhwr',
@@ -63,23 +46,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Change color footer',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwq1ff2',
-                  author: 'Admin',
-                  text: 'Comment1Миша',
-                },
-                {
-                  id: 'qwq2ff3',
-                  author: 'Admin',
-                  text: 'Comment3Серега',
-                },
-                {
-                  id: 'qwq3ff6',
-                  author: 'Admin',
-                  text: 'Comment44Ваниш',
-                },
-              ],
             },
             {
               id: 'rgnefrt',
@@ -87,23 +53,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Add ico ',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwa1ff2',
-                  author: 'Admin',
-                  text: 'Comment1Иваниш',
-                },
-                {
-                  id: 'qws2ff3',
-                  author: 'Admin',
-                  text: 'Comment3Сергеич',
-                },
-                {
-                  id: 'qwf3ff6',
-                  author: 'Admin',
-                  text: 'Comment44Валерка',
-                },
-              ],
             },
             {
               id: 'wewghts',
@@ -111,23 +60,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Fixed adding data',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwfhff2',
-                  author: 'Admin',
-                  text: 'Comment1Антоха',
-                },
-                {
-                  id: 'qwyiff3',
-                  author: 'Admin',
-                  text: 'Comment3Дениска',
-                },
-                {
-                  id: 'qw,dff6',
-                  author: 'Admin',
-                  text: 'Comment44Владосик',
-                },
-              ],
             },
             {
               id: 'grhfdsa',
@@ -135,23 +67,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Fixed navigation',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwa4hf2',
-                  author: 'Admin',
-                  text: 'Comment1Сашка',
-                },
-                {
-                  id: 'qws2fwf3',
-                  author: 'Admin',
-                  text: 'Comment3Чебурашка',
-                },
-                {
-                  id: 'qwf3f56',
-                  author: 'Admin',
-                  text: 'Comment44Тигранчик',
-                },
-              ],
             },
             {
               id: 'hrglkoa',
@@ -159,23 +74,6 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
               cardName: 'Styled slider',
               author: 'Admin',
               description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-              comments: [
-                {
-                  id: 'qwa1ffa',
-                  author: 'Admin',
-                  text: 'Comment1Коалла',
-                },
-                {
-                  id: 'qws2fq3',
-                  author: 'Admin',
-                  text: 'Comment3Семенчик',
-                },
-                {
-                  id: 'qwf31f6',
-                  author: 'Admin',
-                  text: 'Comment44Вазгенчик',
-                },
-              ],
             },
           ],
         },
@@ -184,6 +82,55 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
   });
 };
 
+
+export const fetchCommentsRequest = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        data: {
+          comments: [
+            {
+              id: 'qwqeff2',
+              idCard: 'qwqeffg',
+              author: 'Admin',
+              text: 'Comment1',
+            },
+            {
+              id: 'qwqeff3',
+              idCard: 'fwrrhwr',
+              author: 'Admin',
+              text: 'Comment2',
+            },
+            {
+              id: 'qwqeff4',
+              idCard: 'rgnefrt',
+              author: 'Admin',
+              text: 'Comment3',
+            },
+            {
+              id: 'qwqeff5',
+              idCard: 'wewghts',
+              author: 'Admin',
+              text: 'Comment4',
+            },
+            {
+              id: 'qwqeffg6',
+              idCard: 'grhfdsa',
+              author: 'Admin',
+              text: 'Comment5',
+            },
+            {
+              id: 'qwqeff6',
+              idCard: 'hrglkoa',
+              author: 'Admin',
+              text: 'Comment7',
+            },
+          ],
+        },
+      });
+    }, 1000);
+  });
+};
 // import axios from 'axios';
 //
 // axios.common.baseUrl = 'www.asdfasdf.ru/api/v1';

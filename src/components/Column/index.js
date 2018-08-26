@@ -5,6 +5,8 @@ import ColumnTitle from './ColumnTitle';
 import AddCardButton from './AddCardButton';
 
 class Column extends React.Component {
+
+  
   render() {
     return (
       <div className="column__wrapper">
@@ -17,6 +19,7 @@ class Column extends React.Component {
           />
           <AddCardButton
             addCard={this.props.addCard}
+            author={this.props.author}
             columnId={this.props.columnId}
           />
         </div>
@@ -29,9 +32,10 @@ class Column extends React.Component {
           addCard={this.props.addCard}
           editCard={this.props.editCard}
           author={this.props.author}
+          comments={this.props.comments}
           // commentsData={this.props.commentsData}
           addComment={this.props.addComment}
-          delComment={this.props.delComment}
+          deleteComment={this.props.deleteComment}
           editComment={this.props.editComment}
         />
       </div>
