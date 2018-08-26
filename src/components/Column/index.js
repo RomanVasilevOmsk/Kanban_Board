@@ -29,7 +29,7 @@ class Column extends React.Component {
           addCard={this.props.addCard}
           editCard={this.props.editCard}
           author={this.props.author}
-          commentsData={this.props.commentsData}
+          // commentsData={this.props.commentsData}
           addComment={this.props.addComment}
           delComment={this.props.delComment}
           editComment={this.props.editComment}
@@ -40,19 +40,19 @@ class Column extends React.Component {
 }
 
 Column.propTypes = {
-  columnId: PropTypes.number.isRequired,
-  columnName: PropTypes.string.isRequired,
-  cardData: PropTypes.array.isRequired,
-  saveToLocalStorage: PropTypes.func.isRequired,
-  editCard: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
-  author: PropTypes.string,
-  addCard: PropTypes.func.isRequired,
-  commentsData: PropTypes.array.isRequired,
-  addComment: PropTypes.func.isRequired,
-  // changeColumnName: PropTypes.func.isRequired,
-  delComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
+  // columnId: PropTypes.number.isRequired,
+  // columnName: PropTypes.string.isRequired,
+  // cardData: PropTypes.array.isRequired,
+  // saveToLocalStorage: PropTypes.func.isRequired,
+  // editCard: PropTypes.func.isRequired,
+  // deleteCard: PropTypes.func.isRequired,
+  // author: PropTypes.string,
+  // addCard: PropTypes.func.isRequired,
+  // commentsData: PropTypes.array.isRequired,
+  // addComment: PropTypes.func.isRequired,
+  //  changeColumnName: PropTypes.func.isRequired,
+  // delComment: PropTypes.func.isRequired,
+  // editComment: PropTypes.func.isRequired,
 };
 
 export default Column;

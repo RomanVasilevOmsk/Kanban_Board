@@ -25,10 +25,15 @@ class ModalCommentItemForm extends React.Component {
       });
     }
   }
-
   editComment = () => {
-    this.props.editComment(this.props.commentId, this.state.commentValue);
-    this.editCommentCancel();
+    this.props.editComment(this.props.cardId, this.props.commentId, this.state.commentValue);
+    this.editCommentFocus();
+  }
+
+  editCommentFocus = () => {
+    this.setState({
+      commentChange: false,
+    });
   }
 
   editCommentCancel = () => {
@@ -41,7 +46,6 @@ class ModalCommentItemForm extends React.Component {
   editCommentState = () => {
     this.setState({
       commentChange: true,
-      commentValue: this.props.commentText,
     });
   }
 
@@ -50,7 +54,7 @@ class ModalCommentItemForm extends React.Component {
   }
 
   render() {
-    console.log('item',this.props.author);
+    console.log('this.props.commentText', this.props.commentText);
     return (
       <div className="card-modal__comments-inner">
         <div className="card-modal__comments-text-wrapper">
@@ -82,7 +86,7 @@ class ModalCommentItemForm extends React.Component {
               </div>
               </div>
             : <div className="card-modal__comments-block">
-              <p className="card-modal__comments-text">{this.props.commentText} </p>
+              <p className="card-modal__comments-text">{this.state.commentValue}</p>
               <div className="card-modal__comments-edit-wrapper">
                 <button
                   type="button"
@@ -108,11 +112,11 @@ class ModalCommentItemForm extends React.Component {
 }
 
 ModalCommentItemForm.propTypes = {
-  commentId: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  commentText: PropTypes.string.isRequired,
-  delComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
+  // commentId: PropTypes.string.isRequired,
+  // author: PropTypes.string.isRequired,
+  // commentText: PropTypes.string.isRequired,
+  // delComment: PropTypes.func.isRequired,
+  // editComment: PropTypes.func.isRequired,
 };
 
 export default ModalCommentItemForm;

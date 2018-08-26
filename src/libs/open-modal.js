@@ -42,7 +42,6 @@ ContentModal.propTypes = {
   show: PropTypes.bool,
   children: PropTypes.object,
   title: PropTypes.string,
-  typeStyle: PropTypes.string.isRequired,
   onClose: PropTypes.func,
 };
 

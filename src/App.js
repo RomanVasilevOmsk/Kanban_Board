@@ -8,7 +8,7 @@ import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
-import { fetchCards, editCard } from './reducers/cards/actions';
+import { fetchCards, editCard, editComment } from './reducers/cards/actions';
 
 import './assets/styles/_base.scss';
 
@@ -32,7 +32,7 @@ class App extends Component {
     isLoaded: false,
     isLoadedCards: false,
     // cardData: getData(),
-    commentsData: getComments(),
+    // commentsData: getComments(),
     // columnDataName: getColumn(),
     // author: '',
     // modalVisible: (!getUser()),
@@ -182,11 +182,11 @@ class App extends Component {
             addCard={this.addCard}
             editCard={this.props.editCard}
             author={this.props.author}
-            commentsData={this.state.commentsData}
+            // commentsData={this.state.commentsData}
             addComment={this.addComment}
             // changeColumnName={this.changeColumnName}
             delComment={this.delComment}
-            editComment={this.editComment}
+            editComment={this.props.editComment}
             // addAuthorName={this.addAuthorName}
             modalVisible={this.state.modalVisible}
           />
@@ -198,6 +198,7 @@ class App extends Component {
 
 App.propTypes = {
   editCard: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -214,6 +215,7 @@ const mapDispatchToProps = dispatch =>
       fetchColumns,
       fetchCards,
       editCard,
+      editComment,
     },
     dispatch,
   );

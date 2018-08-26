@@ -16,6 +16,15 @@ const ACTION_HANDLERS = {
       .setIn(['cards', index, 'cardName'], fromJS(action.payload.cardName))
       .setIn(['cards', index, 'description'], fromJS(action.payload.description));
   },
+  [ActionTypes.EDIT_COMMENT]: (state, action) => {
+    const { idCard, idComment } = action.payload;
+    const indexCard = state.get('cards').findIndex(card => card.get('id') === idCard);
+    const indexComment = state.getIn(['cards', indexCard, 'comments']).findIndex(comment => comment.get('id') === idComment);
+    console.log('indexCard',indexComment);
+    return state
+      .setIn(['cards', indexCard, 'comments', indexComment, 'text'], fromJS(action.payload.text));
+  },
+
 };
 
 export default function cardReducer(state = initialState, action) {

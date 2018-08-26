@@ -29,3 +29,14 @@ export const editCard = (id, idColumn, cardName, description) => dispatch => {
     },
   });
 };
+
+export const editComment = (idCard, idComment, text) => dispatch => {
+  dispatch({
+    type: ActionTypes.EDIT_COMMENT,
+    payload: {
+      idCard,
+      idComment,
+      text,
+    },
+  });
+};

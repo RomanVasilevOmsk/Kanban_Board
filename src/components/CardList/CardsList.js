@@ -21,7 +21,7 @@ class CardsList extends React.Component {
             columnName={this.props.columnName}
             deleteCard={this.props.deleteCard}
             editCard={this.props.editCard}
-            commentsData={this.props.commentsData}
+            commentsData={card.comments}
             addComment={this.props.addComment}
             delComment={this.props.delComment}
             editComment={this.props.editComment}

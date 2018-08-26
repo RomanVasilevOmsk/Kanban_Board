@@ -26,7 +26,7 @@ class ColumnList extends React.Component {
               addCard={this.props.addCard}
               editCard={this.props.editCard}
               author={this.props.author}
-              commentsData={this.props.commentsData}
+              // commentsData={this.props.commentsData}
               addComment={this.props.addComment}
               // changeColumnName={this.props.changeColumnName}
               delComment={this.props.delComment}
@@ -48,18 +48,18 @@ class ColumnList extends React.Component {
 
 
 ColumnList.propTypes = {
-  columnDataName: PropTypes.array.isRequired,
-  cardData: PropTypes.array.isRequired,
-  saveToLocalStorage: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
-  addCard: PropTypes.func.isRequired,
-  editCard: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
-  commentsData: PropTypes.array.isRequired,
-  addComment: PropTypes.func.isRequired,
+  // columnDataName: PropTypes.array.isRequired,
+  // cardData: PropTypes.array.isRequired,
+  // saveToLocalStorage: PropTypes.func.isRequired,
+  // deleteCard: PropTypes.func.isRequired,
+  // addCard: PropTypes.func.isRequired,
+  // editCard: PropTypes.func.isRequired,
+  // author: PropTypes.string.isRequired,
+  // commentsData: PropTypes.array.isRequired,
+  // addComment: PropTypes.func.isRequired,
   // changeColumnName: PropTypes.func.isRequired,
-  delComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
+  // delComment: PropTypes.func.isRequired,
+  // editComment: PropTypes.func.isRequired,
   // addAuthorName: PropTypes.func.isRequired,
 
 };

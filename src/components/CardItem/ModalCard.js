@@ -13,7 +13,8 @@ class ModalCard extends React.Component {
 
   render() {
       // console.log('author: ', this.props.author);
-      // console.log('cardAuthor: ', this.props.cardAuthor);
+      // console.log('this.props.cardDescription: ', this.props.cardDescription);
+      // console.log('commentsDat!a', this.props.commentsData);
     return (
       <div>
           <ModalTitleForm
@@ -35,16 +36,14 @@ class ModalCard extends React.Component {
             cardId={this.props.cardId}
             addComment={this.props.addComment}
           />
-          {
-              this.props.commentsData.filter(card => card.idCard === this.props.cardId).length !== 0
-                  ? <ModalCommentListForm
-                      commentsData={this.props.commentsData}
-                      author={this.props.author}
-                      cardId={this.props.cardId}
-                      delComment={this.props.delComment}
-                      editComment={this.props.editComment}
-                  /> : ''
-          }
+         <ModalCommentListForm
+            commentsData={this.props.commentsData}
+            author={this.props.author}
+            cardId={this.props.cardId}
+            cardId={this.props.cardId}
+            delComment={this.props.delComment}
+            editComment={this.props.editComment}
+          />
       </div>
     );
   }
