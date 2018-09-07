@@ -42,11 +42,11 @@ export const editCard = (id, idColumn, cardName, description) => dispatch => {
   });
 };
 
-export const deleteCard = (id) => dispatch => {
+export const deleteCard = id => dispatch => {
   dispatch({
     type: ActionTypes.DELETE_CARD,
     payload: {
-      id
+      id,
     },
   });
 };

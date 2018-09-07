@@ -16,7 +16,7 @@ class Column extends React.Component {
           />
           <AddCardButton addCard={this.props.addCard} author={this.props.author} columnId={this.props.columnId} />
         </div>
-        <CardsList author={this.props.author} />
+        <CardsList columnId={this.props.columnId} columnName={this.props.columnName} />
       </div>
     );
   }

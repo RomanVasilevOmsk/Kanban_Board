@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Immutable from 'immutable';
-import uid from 'uid';
 import { bindActionCreators } from 'redux';
 import ModalUser from './components/ModalUser';
 import Layout from './components/Layout';
@@ -15,16 +13,16 @@ import './assets/styles/_base.scss';
 
 import { getColumnName, getAuthorName, getCardData, getComments } from './selectors';
 
-import {
-  saveToLocalStorage,
-  saveCommentsToLocalStorage,
-  // saveColumnToLocalStorage,
-  getData,
-  // getComments,
-  getColumn,
-  getUser,
-  setUser,
-} from './api/';
+// import {
+//   saveToLocalStorage,
+//   saveCommentsToLocalStorage,
+//   // saveColumnToLocalStorage,
+//   getData,
+//   // getComments,
+//   getColumn,
+//   getUser,
+//   setUser,
+// } from './api/';
 import PropTypes from 'prop-types';
 // import {addUser} from './actions';
 
