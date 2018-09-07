@@ -1,4 +1,5 @@
 import ActionTypes from '../../actionTypes';
+import uid from 'uid';
 
 import { fetchCommentsRequest } from '../../api';
 
@@ -18,6 +19,17 @@ export const fetchComments = () => dispatch => {
     .catch(error => console.log(error));
 };
 
+export const addComment = (idCard, author, text) => dispatch => {
+  dispatch({
+    type: ActionTypes.ADD_COMMENT,
+    payload: {
+      id: uid(),
+      idCard: idCard,
+      author: author,
+      text: text,
+    },
+  });
+};
 export const editComment = (id, text) => dispatch => {
   dispatch({
     type: ActionTypes.EDIT_COMMENT,
@@ -28,11 +40,11 @@ export const editComment = (id, text) => dispatch => {
   });
 };
 
-export const deleteComment = (id) => dispatch => {
+export const deleteComment = id => dispatch => {
   dispatch({
     type: ActionTypes.DELETE_COMMENT,
     payload: {
-      id
+      id,
     },
   });
 };

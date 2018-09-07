@@ -23,7 +23,7 @@ class ModalAddCommentForm extends React.Component {
   };
 
   handleAddComment = () => {
-    this.props.addComment(this.props.cardId, this.state.commentValue);
+    this.props.addComment(this.props.cardId,this.props.author ,this.state.commentValue);
     this.setState({
       commentValue: '',
       addButton: false,

@@ -1,38 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { editColumn } from '../../reducers/columns/actions';
 
 class ColumnTitle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      columnValue: this.props.columnName,
-    };
-  }
-
-  handleChangeNameColumn = () => {
-    this.props.editColumn(this.props.columnId, this.state.columnValue);
+  state = {
+    columnName: this.props.columnName,
   };
 
-  handleChangeColumn = event => {
+  onChangeNameColumn = event => {
     if (event.charCode === 13) {
-      this.handleChangeNameColumn(event);
+      this.props.editColumn(this.props.columnId, event);
     }
     this.setState({
-      columnValue: event.target.value,
+      columnName: event.target.value,
     });
   };
 
   render() {
+    const { columnId, editColumn } = this.props;
+    const { columnName } = this.state;
     return (
       <input
         className="column__name"
-        onChange={this.handleChangeColumn}
-        onBlur={this.handleChangeNameColumn}
-        onKeyPress={this.handleChangeColumn}
-        value={this.state.columnValue}
+        onChange={this.onChangeNameColumn}
+        onBlur={() => editColumn(columnId, columnName)}
+        onKeyPress={() => editColumn(columnId, columnName)}
+        value={columnName}
       />
     );
   }
@@ -44,15 +36,4 @@ ColumnTitle.propTypes = {
   editColumn: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      editColumn,
-    },
-    dispatch,
-  );
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ColumnTitle);
+export default ColumnTitle;

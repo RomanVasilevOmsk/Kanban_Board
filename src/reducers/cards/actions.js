@@ -24,7 +24,7 @@ export const addCard = (columnId, author) => dispatch => {
       id: uid(),
       idColumn: columnId,
       cardName: '',
-      author: 'author',
+      author: author,
       description: '',
     },
   });

@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 // import Immutable from 'immutable';
 import uid from 'uid';
 import { bindActionCreators } from 'redux';
-
+import ModalUser from './components/ModalUser';
 import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 
 import { fetchColumns } from './reducers/columns/actions';
 import { fetchCards, editCard, deleteCard, addCard } from './reducers/cards/actions';
-import { fetchComments, editComment, deleteComment} from './reducers/comments/actions';
+import { fetchComments, editComment, deleteComment, addComment } from './reducers/comments/actions';
 
 import './assets/styles/_base.scss';
 
@@ -25,7 +25,7 @@ import {
   getUser,
   setUser,
 } from './api/';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // import {addUser} from './actions';
 
 class App extends Component {
@@ -33,12 +33,7 @@ class App extends Component {
     isLoaded: false,
     isLoadedCards: false,
     isLoadedComments: false,
-    // cardData: getData(),
-    // commentsData: getComments(),
-    // columnDataName: getColumn(),
-    // author: '',
-    // modalVisible: (!getUser()),
-    // modalVisible: (!this.props.author),
+    modalVisible: !this.props.author,
   };
 
   componentDidMount = () => {
@@ -59,146 +54,18 @@ class App extends Component {
     );
   };
 
-  // addAuthorName = (authorName) => {
-  //   const checkAuthor = this.props.author;
-  //   let visible = true;
-  //   let author = '';
-  //   if (!checkAuthor) {
-  //     visible = true;
-  //     author = authorName;
-  //   } else {
-  //     author = authorName;
-  //     visible = false;
-  //   }
-  //   this.setState({
-  //     modalVisible: visible,
-  //     // author: author,
-  //   });
-  //   setUser(author);
-  // };
-
-  // deleteCard = cardId => {
-  //   const newState = this.state.cardData.filter(card => card.id !== cardId);
-  //   this.setState({
-  //     cardData: newState,
-  //   });
-  //   saveToLocalStorage(newState);
-  // };
-
-  // addCard = columnId => {
-  //   const newState = this.state.cardData.concat([
-  //     {
-  //       id: uid(),
-  //       idColumn: columnId,
-  //       cardName: '',
-  //       author: this.props.author,
-  //       description: '',
-  //     },
-  //   ]);
-  //   this.setState({
-  //     cardData: newState,
-  //   });
-  //   saveToLocalStorage(newState);
-  // };
-
-  addComment = (cardId, text) => {
-    const newState = this.state.commentsData.concat([
-      {
-        id: uid(),
-        idCard: cardId,
-        author: this.props.author,
-        text: text,
-      },
-    ]);
-    this.setState({
-      commentsData: newState,
-    });
-    saveCommentsToLocalStorage(newState);
-  };
-
-  delComment = commentId => {
-    const newState = this.state.commentsData.filter(comment => comment.id !== commentId);
-    this.setState({
-      commentsData: newState,
-    });
-    saveCommentsToLocalStorage(newState);
-  };
-
-  editComment = (commentId, text) => {
-    const newState = this.state.commentsData.map(comment => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          text: TextMetrics,
-        };
-      } else {
-        return comment;
-      }
-    });
-    this.setState({
-      commentsData: newState,
-    });
-    saveCommentsToLocalStorage(newState);
-  };
-
-  editCard = (cardId, columnId, cardName, cardDescription) => {
-    const newState = this.props.cardData.map(card => {
-      if (card.id === cardId) {
-        return {
-          ...card,
-          cardName: cardName,
-          description: cardDescription,
-        };
-      } else {
-        return card;
-      }
-    });
-    this.setState({
-      cardData: newState,
-    });
-    saveToLocalStorage(newState);
-  };
-
-  changeColumnName = (ColumnId, columnName) => {
-    const newState = this.props.columnDataName.map(column => {
-      if (column.id === ColumnId) {
-        return {
-          ...column,
-          columnName: columnName,
-        };
-      } else {
-        return column;
-      }
-    });
-    this.setState({
-      columnDataName: newState,
-    });
-    saveColumnToLocalStorage(newState);
-  };
-
   render() {
     if (!this.state.isLoaded) return null;
     return (
       <div className="App">
         <Layout>
-          <ColumnList
-            columnDataName={this.props.columnDataName}
-            cardData={this.props.cardData}
-            saveToLocalStorage={saveToLocalStorage}
-            deleteCard={this.props.deleteCard}
-            addCard={this.props.addCard}
-            editCard={this.props.editCard}
-            author={this.props.author}
-            comments={this.props.comments}
-            // commentsData={this.state.commentsData}
-            addComment={this.addComment}
-            // changeColumnName={this.changeColumnName}
-            deleteComment={this.props.deleteComment}
-            editComment={this.props.editComment}
-            // addAuthorName={this.addAuthorName}
-            modalVisible={this.state.modalVisible}
-          />
+          <ColumnList />
         </Layout>
+        <ModalUser
+          // addAuthorName={this.props.addAuthorName}
+          // author={this.props.author}
+          modalVisible={this.state.modalVisible}
+        />
       </div>
     );
   }
@@ -209,7 +76,8 @@ App.propTypes = {
   editComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  addCard: PropTypes.func.isRequired
+  addCard: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -231,7 +99,8 @@ const mapDispatchToProps = dispatch =>
       editComment,
       deleteComment,
       deleteCard,
-      addCard
+      addCard,
+      addComment,
     },
     dispatch,
   );

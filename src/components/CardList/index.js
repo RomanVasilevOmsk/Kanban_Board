@@ -1,8 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../CardItem';
+import { fetchCards, editCard, deleteCard, addCard } from './reducers/cards/actions';
 
 class CardsList extends React.Component {
+  state = {
+    isLoadedCards: false,
+  };
+
+  componentDidMount = () => {
+    this.props.fetchCards().then(() =>
+      this.setState({
+        isLoadedCards: true,
+      }),
+    );
+  };
+
   render() {
     return (
       <div className="cards-list__wrapper">
@@ -43,4 +56,29 @@ CardsList.propTypes = {
   // editComment: PropTypes.func.isRequired,
 };
 
-export default CardsList;
+const mapStateToProps = state => {
+  return {
+    cardData: getCardData(state),
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchColumns,
+      fetchCards,
+      fetchComments,
+      editCard,
+      editComment,
+      deleteComment,
+      deleteCard,
+      addCard,
+      addComment,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CardsList);
