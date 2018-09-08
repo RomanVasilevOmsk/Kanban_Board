@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import ModalUserForm from './ModalUserForm';
 
-
 class ModalUser extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +38,6 @@ class ModalUser extends React.Component {
     );
   }
 }
-
 
 ModalUser.propTypes = {
   // addAuthorName: PropTypes.func.isRequired,

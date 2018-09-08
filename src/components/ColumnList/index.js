@@ -3,14 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Column from '../Column';
-
-import { getColumnName, getAuthorName } from '../../selectors';
+import { getAuthorName, getColumnName } from '../../selectors';
 import { fetchColumns, editColumn } from '../../reducers/columns/actions';
-import { addCard } from '../../reducers/cards/actions';
+import { fetchCards, addCard } from '../../reducers/cards/actions';
+import { fetchComments } from '../../reducers/comments/actions';
+
 
 class ColumnList extends React.Component {
   state = {
     isLoaded: false,
+    isLoadedCards: false,
+    isLoadedComments: false,
   };
 
   componentDidMount = () => {
@@ -19,20 +22,32 @@ class ColumnList extends React.Component {
         isLoaded: true,
       }),
     );
+    this.props.fetchCards().then(() =>
+      this.setState({
+        isLoadedCards: true,
+      }),
+    );
+    this.props.fetchComments().then(() =>
+      this.setState({
+        isLoadedComments: true,
+      }),
+    );
   };
 
   render() {
+    if (!this.state.isLoaded) return null;
+    const { addCard, editColumn, author, columnDataName } = this.props;
     return (
       <div className="column-list__wrapper">
         <div className="column-list">
-          {this.props.columnDataName.map(column => (
+          {columnDataName.map(column => (
             <Column
               key={column.id}
               columnId={column.id}
               columnName={column.columnName}
-              addCard={this.props.addCard}
-              editColumn={this.props.editColumn}
-              author={this.props.author}
+              addCard={addCard}
+              editColumn={editColumn}
+              author={author}
             />
           ))}
         </div>
@@ -43,23 +58,26 @@ class ColumnList extends React.Component {
 
 ColumnList.propTypes = {
   fetchColumns: PropTypes.func.isRequired,
+  fetchCards: PropTypes.func.isRequired,
   columnDataName: PropTypes.array,
-  author: PropTypes.string.isRequired,
   addCard: PropTypes.func.isRequired,
   editColumn: PropTypes.func.isRequired,
+  author: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    author: getAuthorName(state),
     columnDataName: getColumnName(state),
+    author: getAuthorName(state),
   };
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchComments,
       fetchColumns,
+      fetchCards,
       editColumn,
       addCard,
     },

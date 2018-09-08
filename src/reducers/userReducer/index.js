@@ -2,12 +2,12 @@ import { fromJS } from 'immutable';
 import ActionTypes from '../../actionTypes';
 
 const initialState = fromJS({
-  userName: '',
+  user: '',
 });
 
 const ACTION_HANDLERS = {
   [ActionTypes.ADD_USER]: (state, action) => {
-    return state.set('userName', fromJS(action.payload));
+    return state.set('user', fromJS(action.payload));
   },
 };
 

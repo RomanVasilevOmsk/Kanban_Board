@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Field } from 'react-final-form';
 import CardsList from '../CardList';
-import ColumnTitle from './ColumnTitle';
+import ColumnTitle from '../form-fields/ColumnTitle';
 import AddCardButton from './AddCardButton';
 
 class Column extends React.Component {
+  handleSubmit = values => {
+    console.log('submit');
+  };
   render() {
     return (
       <div className="column__wrapper">
         <div className="column__header">
-          <ColumnTitle
-            columnId={this.props.columnId}
-            editColumn={this.props.editColumn}
-            columnName={this.props.columnName}
+          <Form
+            onSubmit={this.props.editColumn}
+            initialValues={{ stooge: 'larry', employed: false }}
+            render={() => (
+              <Field
+                name="columnTitle"
+                columnId={this.props.columnId}
+                editColumn={this.props.editColumn}
+                columnName={this.props.columnName}
+                component={ColumnTitle}
+              />
+            )}
           />
           <AddCardButton addCard={this.props.addCard} author={this.props.author} columnId={this.props.columnId} />
         </div>

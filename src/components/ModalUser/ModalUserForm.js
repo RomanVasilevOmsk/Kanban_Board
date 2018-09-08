@@ -9,7 +9,7 @@ class ModalUserForm extends React.Component {
     authorInput: '',
     warningText: '',
   };
-  addAuthorNameInput = (event) => {
+  addAuthorNameInput = event => {
     if (event.charCode === 13) {
       this.handleAddAuthorName(event);
     }
@@ -20,7 +20,6 @@ class ModalUserForm extends React.Component {
 
   handleAddAuthorName = () => {
     if (this.state.authorInput !== '') {
-      // this.props.addAuthorName(this.state.authorInput);
       this.props.addUser(this.state.authorInput);
       this.props.modalVisible();
     } else {
@@ -32,7 +31,7 @@ class ModalUserForm extends React.Component {
     this.setState({
       warningText: 'Enter Name',
     });
-  }
+  };
 
   render() {
     return (
@@ -45,21 +44,30 @@ class ModalUserForm extends React.Component {
           placeholder={this.state.authorInput ? '' : 'Enter your name'}
           autoFocus
         />
-        <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">OK</button>
-        { this.state.warningText !== '' ? <p>{this.state.warningText} </p> : '' }
+        <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">
+          OK
+        </button>
+        {this.state.warningText !== '' ? <p>{this.state.warningText} </p> : ''}
       </form>
     );
   }
 }
 
 ModalUserForm.propTypes = {
-  // addAuthorName: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
   modalVisible: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  addUser,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addUser,
+    },
+    dispatch,
+  );
 
-export default connect(null, mapDispatchToProps)(ModalUserForm);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ModalUserForm);

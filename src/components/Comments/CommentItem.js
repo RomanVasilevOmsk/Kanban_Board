@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ModalCommentItemForm extends React.Component {
-    state = {
-      commentValue: this.props.commentText,
-      commentChange: false,
-      saveButtonDisabled: true,
-    };
+class CommentsItem extends React.Component {
+  state = {
+    commentValue: this.props.commentText,
+    commentChange: false,
+    saveButtonDisabled: true,
+  };
 
-  editCommentValue = (event) => {
+  editCommentValue = event => {
     this.setState({
       commentValue: event.target.value,
     });
@@ -21,44 +21,42 @@ class ModalCommentItemForm extends React.Component {
         saveButtonDisabled: false,
       });
     }
-  }
+  };
   editComment = () => {
     this.props.editComment(this.props.commentId, this.state.commentValue);
     this.editCommentFocus();
-  }
+  };
 
   editCommentFocus = () => {
     this.setState({
       commentChange: false,
     });
-  }
+  };
 
   editCommentCancel = () => {
     this.setState({
       commentChange: false,
       commentValue: this.props.commentText,
     });
-  }
+  };
 
   editCommentState = () => {
     this.setState({
       commentChange: true,
     });
-  }
+  };
 
-  deleteComment = () => {
-    console.log('comments',this.props.comments);
+  handleDeleteComment = () => {
     this.props.deleteComment(this.props.commentId);
-  }
+  };
 
   render() {
-    console.log('comments',this.props.comments);
     return (
       <div className="card-modal__comments-inner">
         <div className="card-modal__comments-text-wrapper">
           <p className="card-modal__comments-author">{this.props.author} </p>
-          { this.state.commentChange
-            ? <div className="card-modal__comments-block">
+          {this.state.commentChange ? (
+            <div className="card-modal__comments-block">
               <input
                 className="card-modal__comments-text-input"
                 value={this.state.commentValue}
@@ -82,8 +80,9 @@ class ModalCommentItemForm extends React.Component {
                   Cancel
                 </button>
               </div>
-              </div>
-            : <div className="card-modal__comments-block">
+            </div>
+          ) : (
+            <div className="card-modal__comments-block">
               <p className="card-modal__comments-text">{this.state.commentValue}</p>
               <div className="card-modal__comments-edit-wrapper">
                 <button
@@ -95,26 +94,26 @@ class ModalCommentItemForm extends React.Component {
                 </button>
                 <button
                   type="button"
-                  onClick={this.deleteComment}
+                  onClick={this.handleDeleteComment}
                   className="card-modal__comments-edit-button btn-cancel"
                 >
                   Delete
                 </button>
               </div>
-              </div>
-          }
+            </div>
+          )}
         </div>
       </div>
     );
   }
 }
 
-ModalCommentItemForm.propTypes = {
-  // commentId: PropTypes.string.isRequired,
-  // author: PropTypes.string.isRequired,
-  // commentText: PropTypes.string.isRequired,
-  // delComment: PropTypes.func.isRequired,
-  // editComment: PropTypes.func.isRequired,
+CommentsItem.propTypes = {
+  deleteComment: PropTypes.func.isRequired,
+  commentId: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  commentText: PropTypes.string.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
-export default ModalCommentItemForm;
+export default CommentsItem;

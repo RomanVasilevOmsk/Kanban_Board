@@ -14,7 +14,7 @@ class AddCardButton extends React.Component {
 
 AddCardButton.propTypes = {
   addCard: PropTypes.func.isRequired,
-  columnId: PropTypes.string.isRequired,
+  columnId: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
 };
 

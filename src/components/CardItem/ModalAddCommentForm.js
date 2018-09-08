@@ -23,7 +23,7 @@ class ModalAddCommentForm extends React.Component {
   };
 
   handleAddComment = () => {
-    this.props.addComment(this.props.cardId,this.props.author ,this.state.commentValue);
+    this.props.addComment(this.props.cardId, this.props.user, this.state.commentValue);
     this.setState({
       commentValue: '',
       addButton: false,
@@ -47,13 +47,8 @@ class ModalAddCommentForm extends React.Component {
             onChange={this.handleChangeCommentValue}
             placeholder="Write comment"
           />
-          <button
-            type="button"
-            className="btn-ok"
-            onClick={this.handleAddComment}
-            disabled={!this.state.addButton}
-          >
-              Add comment
+          <button type="button" className="btn-ok" onClick={this.handleAddComment} disabled={!this.state.addButton}>
+            Add comment
           </button>
         </div>
       </form>
@@ -64,6 +59,7 @@ class ModalAddCommentForm extends React.Component {
 ModalAddCommentForm.propTypes = {
   cardId: PropTypes.string.isRequired,
   addComment: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
 };
 
 export default ModalAddCommentForm;
