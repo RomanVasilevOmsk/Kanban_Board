@@ -35,21 +35,21 @@ class ModalUserForm extends React.Component {
   };
 
   onSubmit = values => {
-    console.log(values.userName)
+    console.log(values.userName);
     this.props.addUser(values.userName);
     this.props.modalVisible();
-  }
+  };
   render() {
     return (
       <Form
         onSubmit={this.onSubmit}
-        render={() => (
-          <form className="user-form-modal" onSubmit={this.onSubmit}>
+        render={({ handleSubmit }) => (
+          <form className="user-form-modal" onSubmit={handleSubmit}>
             <Field name="userName" className="column__name" placeholder="Enter your name" autoFocus component="input" />
             <button className="user-form-modal__btn btn-ok" type="submit">
               OK
             </button>
-            
+
             {/* <input
               className="user-form-modal__name"
               onChange={this.addAuthorNameInput}
@@ -58,12 +58,11 @@ class ModalUserForm extends React.Component {
               placeholder={this.state.authorInput ? '' : 'Enter your name'}
               autoFocus
             />
-            
+
             {/* <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">
               OK
             </button> */}
             {/* {this.state.warningText !== '' ? <p>{this.state.warningText} </p> : ''} */}
-         
           </form>
         )}
       />
