@@ -9,20 +9,28 @@ class Column extends React.Component {
   handleSubmit = values => {
     console.log('submit');
   };
+
+
   render() {
     return (
       <div className="column__wrapper">
         <div className="column__header">
           <Form
             onSubmit={this.props.editColumn}
-            initialValues={{ stooge: 'larry', employed: false }}
+            initialValues={{ columnTitle: this.props.columnName }}
             render={() => (
               <Field
                 name="columnTitle"
+                className="column__name"
+                value={this.props.columnName}
                 columnId={this.props.columnId}
+                
+                formatOnBlur
                 editColumn={this.props.editColumn}
-                columnName={this.props.columnName}
-                component={ColumnTitle}
+                component="input"
+        
+                // columnName={this.props.columnName}
+                
               />
             )}
           />

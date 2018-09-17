@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { Form, Field } from 'react-final-form';
 import { addUser } from '../../reducers/userReducer/actions';
 
 class ModalUserForm extends React.Component {
@@ -33,22 +34,39 @@ class ModalUserForm extends React.Component {
     });
   };
 
+  onSubmit = values => {
+    console.log(values.userName)
+    this.props.addUser(values.userName);
+    this.props.modalVisible();
+  }
   render() {
     return (
-      <form className="user-form-modal">
-        <input
-          className="user-form-modal__name"
-          onChange={this.addAuthorNameInput}
-          onKeyPress={this.addAuthorNameInput}
-          value={this.state.authorInput ? this.state.authorInput : ''}
-          placeholder={this.state.authorInput ? '' : 'Enter your name'}
-          autoFocus
-        />
-        <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">
-          OK
-        </button>
-        {this.state.warningText !== '' ? <p>{this.state.warningText} </p> : ''}
-      </form>
+      <Form
+        onSubmit={this.onSubmit}
+        render={() => (
+          <form className="user-form-modal" onSubmit={this.onSubmit}>
+            <Field name="userName" className="column__name" placeholder="Enter your name" autoFocus component="input" />
+            <button className="user-form-modal__btn btn-ok" type="submit">
+              OK
+            </button>
+            
+            {/* <input
+              className="user-form-modal__name"
+              onChange={this.addAuthorNameInput}
+              onKeyPress={this.addAuthorNameInput}
+              value={this.state.authorInput ? this.state.authorInput : ''}
+              placeholder={this.state.authorInput ? '' : 'Enter your name'}
+              autoFocus
+            />
+            
+            {/* <button type="button" onClick={this.handleAddAuthorName} className="user-form-modal__btn btn-ok">
+              OK
+            </button> */}
+            {/* {this.state.warningText !== '' ? <p>{this.state.warningText} </p> : ''} */}
+         
+          </form>
+        )}
+      />
     );
   }
 }

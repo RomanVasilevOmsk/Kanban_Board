@@ -21,7 +21,7 @@ class ColumnTitle extends React.Component {
     return (
       <input
         className="column__name"
-        onChange={this.onChangeNameColumn}
+        onChange={this.props.onChangeNameColumn}
         onBlur={() => editColumn(columnId, columnName)}
         onKeyPress={() => editColumn(columnId, columnName)}
         value={columnName}
@@ -37,3 +37,5 @@ ColumnTitle.propTypes = {
 };
 
 export default ColumnTitle;
+
+
