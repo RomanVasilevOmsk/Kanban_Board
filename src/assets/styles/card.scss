@@ -22,6 +22,10 @@
       outline: none;
       border: 2px solid #fff;
       border-bottom: 2px solid #0079bf;
+      &--error{
+        background-image: url("../images/edit-ico-error.svg");
+        border-bottom: 2px solid red;
+      }
     }
   }
 }

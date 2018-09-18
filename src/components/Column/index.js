@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import CardsList from '../CardList';
-import ColumnTitle from '../form-fields/ColumnTitle';
 import AddCardButton from './AddCardButton';
 
 class Column extends React.Component {
   onSubmit = values => {
-    console.log('submit');
     this.props.editColumn(this.props.columnId, values.columnTitle);
   };
 
@@ -19,18 +17,7 @@ class Column extends React.Component {
             onSubmit={this.onSubmit}
             initialValues={{ columnTitle: this.props.columnName }}
             render={({ handleSubmit }) => (
-              <Field
-                name="columnTitle"
-                className="column__name"
-                value={this.props.columnName}
-                columnId={this.props.columnId}
-                onBlur={handleSubmit}
-                formatOnBlur
-                editColumn={this.props.editColumn}
-                component="input"
-
-                // columnName={this.props.columnName}
-              />
+              <Field name="columnTitle" className="column__name" onBlur={handleSubmit} component="input" />
             )}
           />
           <AddCardButton addCard={this.props.addCard} author={this.props.author} columnId={this.props.columnId} />

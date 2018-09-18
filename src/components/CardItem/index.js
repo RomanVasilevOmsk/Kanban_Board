@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Field } from 'react-final-form';
 import ModalCard from './ModalCard';
 import openContentModal from '../../libs/open-modal';
 class CardItem extends React.Component {
-  state = {
-    cardName: this.props.cardName,
-    cardId: this.props.cardId,
-    cardTitle: this.props.cardName,
-  };
-
   handleOpenModal = () => {
     this.openCardModal();
   };
@@ -21,24 +16,8 @@ class CardItem extends React.Component {
     this.props.deleteCard(this.props.cardId);
   };
 
-  handleChangeName = event => {
-    this.setState({
-      cardTitle: event.target.value,
-    });
-    this.props.editCard(this.props.cardId, this.props.columnId, event.target.value);
-  };
-
-  handleChangeTitle = event => {
-    if (event.charCode === 13) {
-      this.handleChangeName(event);
-    }
-    this.setState({
-      cardTitle: event.target.value,
-    });
-  };
-
-  handleChangeNameCard = event => {
-    this.props.editCard(this.props.cardId, this.props.columnId, event.target.value);
+  onSubmit = values => {
+    this.props.editCard(this.props.cardId, this.props.columnId, values.cardNameNew);
   };
 
   openCardModal = () => {
@@ -80,7 +59,8 @@ class CardItem extends React.Component {
   };
 
   render() {
-    // console.log('Props Item', this.props.comments);
+    console.log('Props Card item', this.props);
+    //Здесь идет перерендер, а у потомка нет
     return (
       <div className="card-item__wrapper">
         {this.props.cardName ? (
@@ -91,16 +71,32 @@ class CardItem extends React.Component {
             </button>
           </div>
         ) : (
-          <div onClick={this.openCardModal} className="card-item__name">
-            <input
-              className="card-item__new"
-              onChange={this.handleChangeTitle}
-              onClick={this.handleChangeTitleClick}
-              onBlur={this.handleChangeNameCard}
-              onKeyPress={this.handleChangeTitle}
-              value={this.state.cardTitle ? this.state.cardTitle : ''}
-              placeholder="New Card"
-              autoFocus
+          <div onClick={this.handleChangeTitleClick} className="card-item__name">
+            <Form
+              onSubmit={this.onSubmit}
+              validate={values => {
+                const errors = {};
+                if (!values.cardNameNew) {
+                  errors.cardNameNew = 'error';
+                }
+                return errors;
+              }}
+              render={({ handleSubmit }) => (
+                <Field name="cardNameNew">
+                  {({ input, meta }) => (
+                    <div>
+                      <input
+                        {...input}
+                        onBlur={handleSubmit}
+                        type="text"
+                        autoFocus
+                        className={`card-item__new card-item__new--${meta.error && meta.touched && meta.error}`}
+                        placeholder="New Card"
+                      />
+                    </div>
+                  )}
+                </Field>
+              )}
             />
             <button onClick={this.handleDeleteCard} className="column__del-card">
               &times;

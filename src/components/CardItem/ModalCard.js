@@ -1,29 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ModalTitleForm from './ModalTitleForm';
-import ModalDescriptionForm from './ModalDescriptionForm';
+import { Form, Field } from 'react-final-form';
 import ModalAddCommentForm from './ModalAddCommentForm';
 import CommentsList from '../Comments/CommentsList';
 
 class ModalCard extends React.Component {
+  onSubmit = values => {
+    this.props.editCard(this.props.cardId, this.props.columnId, values.cardName, values.userDesc);
+  };
   render() {
-    // console.log('PropsModal', this.props);
+    console.log('Props', this.props);
+    //Здесь не меняются пропсы при перередере
     return (
       <div>
-        <ModalTitleForm
-          columnName={this.props.columnName}
-          cardId={this.props.cardId}
-          cardAuthor={this.props.cardAuthor}
-          cardName={this.props.cardName}
-          columnId={this.props.columnId}
-          editCard={this.props.editCard}
-        />
-        <ModalDescriptionForm
-          cardId={this.props.cardId}
-          cardDescription={this.props.cardDescription}
-          columnId={this.props.columnId}
-          cardName={this.props.cardName}
-          editCard={this.props.editCard}
+        <Form
+          onSubmit={this.onSubmit}
+          initialValues={{ cardName: this.props.cardName, userDesc: this.props.cardDescription }}
+          render={({ handleSubmit, submitting, pristine }) => (
+            <div>
+              <span className="card-modal__column-name">{this.props.columnName} / </span>
+              <Field
+                name="cardName"
+                className="card-modal__name"
+                component="input"
+                placeholder="Enter the name of the card"
+              />
+              <p className="card-modal__author">{this.props.author ? this.props.author : 'Author'}</p>
+              <div className="card-modal__description-wrapper">
+                <h3 className="card-modal__description-title card-modal__title">Description</h3>
+                <Field
+                  name="userDesc"
+                  className="card-modal__description-text"
+                  component="textarea"
+                  placeholder="Enter card description"
+                />
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={submitting || pristine}
+                  className="card-modal__description-btn btn-ok"
+                >
+                  Change
+                </button>
+              </div>
+            </div>
+          )}
         />
         <ModalAddCommentForm cardId={this.props.cardId} user={this.props.user} addComment={this.props.addComment} />
         <CommentsList

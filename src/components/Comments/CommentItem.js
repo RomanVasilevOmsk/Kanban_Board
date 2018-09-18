@@ -1,48 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Field } from 'react-final-form';
 
 class CommentsItem extends React.Component {
   state = {
-    commentValue: this.props.commentText,
     commentChange: false,
-    saveButtonDisabled: true,
-  };
-
-  editCommentValue = event => {
-    this.setState({
-      commentValue: event.target.value,
-    });
-    if (event.target.value !== '') {
-      this.setState({
-        saveButtonDisabled: true,
-      });
-    } else {
-      this.setState({
-        saveButtonDisabled: false,
-      });
-    }
-  };
-  editComment = () => {
-    this.props.editComment(this.props.commentId, this.state.commentValue);
-    this.editCommentFocus();
-  };
-
-  editCommentFocus = () => {
-    this.setState({
-      commentChange: false,
-    });
   };
 
   editCommentCancel = () => {
     this.setState({
       commentChange: false,
-      commentValue: this.props.commentText,
     });
   };
 
   editCommentState = () => {
     this.setState({
       commentChange: true,
+    });
+  };
+
+  onSubmit = values => {
+    this.props.editComment(this.props.commentId, values.listCommentValue);
+    this.setState({
+      commentChange: false,
     });
   };
 
@@ -57,33 +37,44 @@ class CommentsItem extends React.Component {
           <p className="card-modal__comments-author">{this.props.author} </p>
           {this.state.commentChange ? (
             <div className="card-modal__comments-block">
-              <input
-                className="card-modal__comments-text-input"
-                value={this.state.commentValue}
-                onChange={this.editCommentValue}
-                autoFocus
+              <Form
+                onSubmit={this.onSubmit}
+                initialValues={{ listCommentValue: this.props.commentText }}
+                render={({ handleSubmit, submitting, pristine }) => (
+                  <div>
+                    <div className="card-modal__addComment-wrapper">
+                      <h3 className="card-modal__addComment-title card-modal__title"> Add comment</h3>
+                      <Field
+                        name="listCommentValue"
+                        className="card-modal__comments-text-input"
+                        component="input"
+                        autoFocus
+                      />
+                      <div className="card-modal__comments-edit-wrapper">
+                        <button
+                          type="submit"
+                          onClick={handleSubmit}
+                          disabled={submitting || pristine}
+                          className="card-modal__comments-edit-button card-modal__comments-edit-button--ok btn-ok"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          onClick={this.editCommentCancel}
+                          className="card-modal__comments-edit-button btn-cancel"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               />
-              <div className="card-modal__comments-edit-wrapper">
-                <button
-                  type="button"
-                  onClick={this.editComment}
-                  disabled={!this.state.saveButtonDisabled}
-                  className="card-modal__comments-edit-button card-modal__comments-edit-button--ok btn-ok"
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={this.editCommentCancel}
-                  className="card-modal__comments-edit-button btn-cancel"
-                >
-                  Cancel
-                </button>
-              </div>
             </div>
           ) : (
             <div className="card-modal__comments-block">
-              <p className="card-modal__comments-text">{this.state.commentValue}</p>
+              <p className="card-modal__comments-text">{this.props.commentText}</p>
               <div className="card-modal__comments-edit-wrapper">
                 <button
                   type="button"
@@ -110,6 +101,7 @@ class CommentsItem extends React.Component {
 
 CommentsItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
+  commentValue: PropTypes.string,
   commentId: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   commentText: PropTypes.string.isRequired,

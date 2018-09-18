@@ -1,57 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Field } from 'react-final-form';
 
 class ModalAddCommentForm extends React.Component {
-  state = {
-    commentValue: '',
-    addButton: false,
+  onSubmit = values => {
+    this.props.addComment(this.props.cardId, this.props.user, values.commentValue);
+    values.commentValue = '';
   };
-
-  handleChangeCommentValue = (event) => {
-    this.setState({
-      commentValue: event.target.value,
-    });
-    if (event.target.value !== '') {
-      this.setState({
-        addButton: true,
-      });
-    } else {
-      this.setState({
-        addButton: false,
-      });
-    }
-  };
-
-  handleAddComment = () => {
-    this.props.addComment(this.props.cardId, this.props.user, this.state.commentValue);
-    this.setState({
-      commentValue: '',
-      addButton: false,
-    });
-  }
-
-  addButtonUnFocus = () => {
-    this.setState({
-      addButton: false,
-    });
-  };
-
   render() {
     return (
-      <form>
-        <div className="card-modal__addComment-wrapper">
-          <h3 className="card-modal__addComment-title card-modal__title" >Add comment</h3>
-          <textarea
-            className="card-modal__addComment-text"
-            value={this.state.commentValue}
-            onChange={this.handleChangeCommentValue}
-            placeholder="Write comment"
-          />
-          <button type="button" className="btn-ok" onClick={this.handleAddComment} disabled={!this.state.addButton}>
-            Add comment
-          </button>
-        </div>
-      </form>
+      <Form
+        onSubmit={this.onSubmit}
+        initialValues={{ commentValue: '' }}
+        render={({ handleSubmit, submitting, pristine }) => (
+          <div>
+            <div className="card-modal__addComment-wrapper">
+              <h3 className="card-modal__addComment-title card-modal__title"> Add comment</h3>
+              <Field
+                name="commentValue"
+                className="card-modal__addComment-text"
+                component="textarea"
+                placeholder="Write comment"
+              />
+              <button type="button" onClick={handleSubmit} disabled={submitting || pristine} className="btn-ok">
+                Add comment
+              </button>
+            </div>
+          </div>
+        )}
+      />
     );
   }
 }
