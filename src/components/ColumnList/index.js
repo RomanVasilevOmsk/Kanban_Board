@@ -8,7 +8,6 @@ import { fetchColumns, editColumn } from '../../reducers/columns/actions';
 import { fetchCards, addCard } from '../../reducers/cards/actions';
 import { fetchComments } from '../../reducers/comments/actions';
 
-
 class ColumnList extends React.Component {
   state = {
     isLoaded: false,
@@ -58,6 +57,7 @@ class ColumnList extends React.Component {
 
 ColumnList.propTypes = {
   fetchColumns: PropTypes.func.isRequired,
+  fetchComments: PropTypes.func.isRequired,
   fetchCards: PropTypes.func.isRequired,
   columnDataName: PropTypes.array,
   addCard: PropTypes.func.isRequired,

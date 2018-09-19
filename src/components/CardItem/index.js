@@ -59,7 +59,7 @@ class CardItem extends React.Component {
   };
 
   render() {
-    console.log('Props Card item', this.props);
+    // console.log('Props Card item', this.props);
     //Здесь идет перерендер, а у потомка нет
     return (
       <div className="card-item__wrapper">

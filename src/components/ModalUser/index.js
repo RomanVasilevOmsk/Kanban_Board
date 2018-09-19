@@ -28,11 +28,7 @@ class ModalUser extends React.Component {
           className="card-modal user-modal"
           overlayClassName="card-modal__overlay"
         >
-          <ModalUserForm
-            // addAuthorName={this.props.addAuthorName}
-            modalIsOpen={this.state.modalIsOpen}
-            modalVisible={this.closeModal}
-          />
+          <ModalUserForm modalIsOpen={this.state.modalIsOpen} modalVisible={this.closeModal} />
         </Modal>
       </div>
     );
@@ -40,8 +36,6 @@ class ModalUser extends React.Component {
 }
 
 ModalUser.propTypes = {
-  // addAuthorName: PropTypes.func.isRequired,
-  // author: PropTypes.string,
   modalVisible: PropTypes.bool.isRequired,
 };
 

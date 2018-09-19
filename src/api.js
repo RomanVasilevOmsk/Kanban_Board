@@ -1,5 +1,5 @@
 export const fetchColumnsRequest = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data: {
@@ -21,14 +21,14 @@ export const fetchColumnsRequest = () => {
               columnName: 'Done',
             },
           ],
-        }
+        },
       });
     }, 1000);
   });
 };
 
 export const fetchCardsRequest = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data: {
@@ -82,9 +82,8 @@ export const fetchCardsRequest = () => {
   });
 };
 
-
 export const fetchCommentsRequest = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data: {
@@ -131,15 +130,3 @@ export const fetchCommentsRequest = () => {
     }, 1000);
   });
 };
-// import axios from 'axios';
-//
-// axios.common.baseUrl = 'www.asdfasdf.ru/api/v1';
-//
-// export const fetchColumnsRequest = (id, name) => {
-//     return axios.get(
-//         '/user',
-//         {
-//             // headers
-//         }
-//     );
-// };
