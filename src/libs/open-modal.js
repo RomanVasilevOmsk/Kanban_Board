@@ -18,10 +18,10 @@ class ContentModal extends React.Component {
         className="card-modal"
         overlayClassName="card-modal__overlay"
       >
-        <button onClick={onClose} className="card-modal__close">×</button>
-        <div className="modal__body">
-          {children}
-        </div>
+        <button onClick={onClose} className="card-modal__close">
+          ×
+        </button>
+        <div className="modal__body">{children}</div>
       </Modal>
     );
   }
@@ -42,7 +42,6 @@ ContentModal.propTypes = {
   show: PropTypes.bool,
   children: PropTypes.object,
   title: PropTypes.string,
-  typeStyle: PropTypes.string.isRequired,
   onClose: PropTypes.func,
 };
 

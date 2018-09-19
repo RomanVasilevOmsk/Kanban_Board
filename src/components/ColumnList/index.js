@@ -1,68 +1,90 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Column from '../Column';
-import ModalUser from '../ModalUser';
+import { getAuthorName, getColumnName } from '../../selectors';
+import { fetchColumns, editColumn } from '../../reducers/columns/actions';
+import { fetchCards, addCard } from '../../reducers/cards/actions';
+import { fetchComments } from '../../reducers/comments/actions';
 
 class ColumnList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalVisible: (!this.props.author),
-    };
-  }
+  state = {
+    isLoaded: false,
+    isLoadedCards: false,
+    isLoadedComments: false,
+  };
+
+  componentDidMount = () => {
+    this.props.fetchColumns().then(() =>
+      this.setState({
+        isLoaded: true,
+      }),
+    );
+    this.props.fetchCards().then(() =>
+      this.setState({
+        isLoadedCards: true,
+      }),
+    );
+    this.props.fetchComments().then(() =>
+      this.setState({
+        isLoadedComments: true,
+      }),
+    );
+  };
 
   render() {
+    if (!this.state.isLoaded) return null;
+    const { addCard, editColumn, author, columnDataName } = this.props;
     return (
       <div className="column-list__wrapper">
         <div className="column-list">
-          { this.props.columnDataName.map(column =>
-            (<Column
+          {columnDataName.map(column => (
+            <Column
               key={column.id}
               columnId={column.id}
               columnName={column.columnName}
-              cardData={this.props.cardData}
-              saveToLocalStorage={this.props.saveToLocalStorage}
-              deleteCard={this.props.deleteCard}
-              addCard={this.props.addCard}
-              editCard={this.props.editCard}
-              author={this.props.author}
-              commentsData={this.props.commentsData}
-              addComment={this.props.addComment}
-              // changeColumnName={this.props.changeColumnName}
-              delComment={this.props.delComment}
-              editComment={this.props.editComment}
+              addCard={addCard}
+              editColumn={editColumn}
+              author={author}
             />
-          ))
-        }
+          ))}
         </div>
-        <ModalUser
-          // addAuthorName={this.props.addAuthorName}
-          // author={this.props.author}
-          modalVisible={this.state.modalVisible}
-        />
       </div>
     );
   }
-};
-
-
+}
 
 ColumnList.propTypes = {
-  columnDataName: PropTypes.array.isRequired,
-  cardData: PropTypes.array.isRequired,
-  saveToLocalStorage: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
+  fetchColumns: PropTypes.func.isRequired,
+  fetchComments: PropTypes.func.isRequired,
+  fetchCards: PropTypes.func.isRequired,
+  columnDataName: PropTypes.array,
   addCard: PropTypes.func.isRequired,
-  editCard: PropTypes.func.isRequired,
+  editColumn: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
-  commentsData: PropTypes.array.isRequired,
-  addComment: PropTypes.func.isRequired,
-  // changeColumnName: PropTypes.func.isRequired,
-  delComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
-  // addAuthorName: PropTypes.func.isRequired,
-
 };
 
+const mapStateToProps = state => {
+  return {
+    columnDataName: getColumnName(state),
+    author: getAuthorName(state),
+  };
+};
 
-export default ColumnList;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchComments,
+      fetchColumns,
+      fetchCards,
+      editColumn,
+      addCard,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ColumnList);

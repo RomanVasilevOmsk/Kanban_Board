@@ -1,5 +1,5 @@
-export const fetchColumnsRequest = (id, name) => {
-  return new Promise((resolve) => {
+export const fetchColumnsRequest = () => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data: {
@@ -21,14 +21,14 @@ export const fetchColumnsRequest = (id, name) => {
               columnName: 'Done',
             },
           ],
-        }
+        },
       });
     }, 1000);
   });
 };
 
-export const fetchCardsRequest = (id, idColumn, cardName, author, description) => {
-  return new Promise((resolve) => {
+export const fetchCardsRequest = () => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data: {
@@ -82,15 +82,51 @@ export const fetchCardsRequest = (id, idColumn, cardName, author, description) =
   });
 };
 
-// import axios from 'axios';
-//
-// axios.common.baseUrl = 'www.asdfasdf.ru/api/v1';
-//
-// export const fetchColumnsRequest = (id, name) => {
-//     return axios.get(
-//         '/user',
-//         {
-//             // headers
-//         }
-//     );
-// };
+export const fetchCommentsRequest = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        data: {
+          comments: [
+            {
+              id: 'qwqeff2',
+              idCard: 'qwqeffg',
+              author: 'Admin',
+              text: 'Comment1',
+            },
+            {
+              id: 'qwqeff3',
+              idCard: 'fwrrhwr',
+              author: 'Admin',
+              text: 'Comment2',
+            },
+            {
+              id: 'qwqeff4',
+              idCard: 'rgnefrt',
+              author: 'Admin',
+              text: 'Comment3',
+            },
+            {
+              id: 'qwqeff5',
+              idCard: 'wewghts',
+              author: 'Admin',
+              text: 'Comment4',
+            },
+            {
+              id: 'qwqeffg6',
+              idCard: 'grhfdsa',
+              author: 'Admin',
+              text: 'Comment5',
+            },
+            {
+              id: 'qwqeff6',
+              idCard: 'hrglkoa',
+              author: 'Admin',
+              text: 'Comment7',
+            },
+          ],
+        },
+      });
+    }, 1000);
+  });
+};
