@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CardItem from '../CardItem';
 import { editCard, deleteCard } from '../../reducers/cards/actions';
-import { getComments, getCardData, getAuthorName } from '../../selectors';
+import { getCardData, getAuthorName } from '../../selectors';
 
 class CardsList extends React.Component {
   render() {
@@ -19,7 +19,6 @@ class CardsList extends React.Component {
               cardName={card.cardName}
               author={card.author}
               user={this.props.user}
-              // comments={this.props.comments}
               cardDescription={card.description}
               columnName={this.props.columnName}
               deleteCard={this.props.deleteCard}
@@ -33,7 +32,6 @@ class CardsList extends React.Component {
 }
 
 CardsList.propTypes = {
-  // comments: PropTypes.array.isRequired,
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
   cardData: PropTypes.array.isRequired,
@@ -47,7 +45,6 @@ const mapStateToProps = state => {
   return {
     cardData: getCardData(state),
     user: getAuthorName(state),
-    // comments: getComments(state),
   };
 };
 

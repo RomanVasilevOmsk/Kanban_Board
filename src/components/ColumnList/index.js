@@ -34,10 +34,12 @@ class ColumnList extends React.Component {
   };
 
   render() {
-    if (!this.state.isLoaded) return null;
     const { addCard, editColumn, author, columnDataName } = this.props;
     return (
       <div className="column-list__wrapper">
+        {!this.state.isLoaded &&
+          !this.state.isLoadedCards &&
+          !this.state.isLoadedComments && <div className="loader" />}
         <div className="column-list">
           {columnDataName.map(column => (
             <Column
