@@ -4,19 +4,8 @@ import ModalUser from './components/ModalUser';
 import Layout from './components/Layout';
 import ColumnList from './components/ColumnList';
 import { getAuthorName } from './selectors';
-
 import './assets/styles/_base.scss';
 
-// import {
-//   saveToLocalStorage,
-//   saveCommentsToLocalStorage,
-//   // saveColumnToLocalStorage,
-//   getData,
-//   // getComments,
-//   getColumn,
-//   getUser,
-//   setUser,
-// } from './api/';
 import PropTypes from 'prop-types';
 
 class App extends Component {
