@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { store } from '../../store';
 import { Form, Field } from 'react-final-form';
 import ModalAddCommentForm from './ModalAddCommentForm';
 import CommentsList from '../Comments/CommentsList';
+import modalRedux from '../../HOCS/modal-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addComment, editComment, deleteComment } from '../../reducers/comments/actions';
+import { getComments } from '../../selectors';
 
 class ModalCard extends React.Component {
   onSubmit = values => {
     this.props.editCard(this.props.cardId, this.props.columnId, values.cardName, values.userDesc);
   };
   render() {
-    console.log('Props', this.props);
-    //Здесь не меняются пропсы при перередере
     return (
       <div>
         <Form
@@ -75,4 +79,25 @@ ModalCard.propTypes = {
   cardId: PropTypes.string.isRequired,
 };
 
-export default ModalCard;
+const mapStateToProps = state => {
+  return {
+    comments: getComments(state),
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addComment,
+      editComment,
+      deleteComment,
+    },
+    dispatch,
+  );
+
+export default modalRedux(store)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(ModalCard),
+);

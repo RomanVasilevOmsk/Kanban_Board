@@ -21,21 +21,7 @@ class CardItem extends React.Component {
   };
 
   openCardModal = () => {
-    const {
-      cardName,
-      cardDescription,
-      cardId,
-      columnId,
-      columnName,
-      cardAuthor,
-      author,
-      editCard,
-      addComment,
-      comments,
-      deleteComment,
-      editComment,
-      user,
-    } = this.props;
+    const { cardName, cardDescription, cardId, columnId, columnName, cardAuthor, author, editCard, user } = this.props;
     openContentModal({
       submit: (closeModal, values) => {
         closeModal();
@@ -49,18 +35,12 @@ class CardItem extends React.Component {
         cardAuthor: cardAuthor,
         author: author,
         editCard: editCard,
-        addComment: addComment,
-        comments: comments,
-        deleteComment: deleteComment,
-        editComment: editComment,
         user: user,
       },
     })(ModalCard);
   };
 
   render() {
-    // console.log('Props Card item', this.props);
-    //Здесь идет перерендер, а у потомка нет
     return (
       <div className="card-item__wrapper">
         {this.props.cardName ? (
@@ -111,15 +91,10 @@ class CardItem extends React.Component {
 CardItem.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardAuthor: PropTypes.string,
-  comments: PropTypes.array.isRequired,
-  deleteComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
   columnId: PropTypes.number.isRequired,
   columnName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string,
-  deleteCard: PropTypes.func.isRequired,
-  addComment: PropTypes.func.isRequired,
   editCard: PropTypes.func.isRequired,
   cardId: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
